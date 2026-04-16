@@ -215,6 +215,7 @@ export interface ResearchOptions {
   maxTokens?: number;
   files?: FileContext[];
   conversationHistory?: LLMMessage[];
+  disabledAgents?: AgentName[];
 }
 
 export type StreamCallback = (chunk: string, done: boolean) => void;
@@ -230,6 +231,7 @@ export interface ResearchRequest {
   stream?: boolean;
   files?: FileContext[];
   conversationHistory?: LLMMessage[];
+  disabledAgents?: AgentName[];
 }
 
 export interface ResearchApiResponse {

@@ -9,6 +9,7 @@ import type {
   AgentStatusEvent,
   ResearchSource,
   SearchResult,
+  AgentName,
 } from "./types";
 import { TOKEN_LIMITS, MODE_CONFIG } from "./config";
 import { enhanceQuery } from "./query-enhancer";
@@ -160,6 +161,8 @@ export async function runResearch(
     onAgentStatus?.(event);
   };
 
+  const disabled = options.disabledAgents || [];
+
   // ═══════════════════════════════════════════════════════════
   // PHASE 1: Query Intelligence + Web Search (parallel)
   // ═══════════════════════════════════════════════════════════
@@ -168,23 +171,32 @@ export async function runResearch(
   emit({ agent: "web-search-agent", status: "running", model: "abacusai/dracarys-llama-3.1-70b-instruct", provider: "nvidia" });
 
   const [queryResult, searchResult] = await Promise.all([
-    runQueryIntelligenceAgent(query, options.mode, apiKeys).then(r => {
-      emit({
-        agent: "query-intelligence-agent",
-        status: r.error ? "failed" : "done",
-        model: r.model_used,
-        provider: r.provider,
-        durationMs: r.durationMs,
-        isFallback: r.isFallback,
-        error: r.error,
-      });
-      return r;
-    }),
-    MODE_CONFIG[options.mode].maxSources > 0 ? runWebSearchAgent(
-      {
-        query,
-        enhanced_query: query,
-      },
+    disabled.includes("query-intelligence-agent")
+      ? Promise.resolve({
+          agent: "query-intelligence-agent",
+          output: { intent: "general", subtopics: [] },
+          model_used: "none",
+          provider: "none",
+          durationMs: 0,
+          isFallback: false,
+          error: "skipped",
+          enhanced_query: query,
+          subtopics: [],
+        } as AgentResult & { enhanced_query: string; subtopics: string[] }).then((r) => { emit({ agent: r.agent, status: "skipped" }); return r; })
+      : runQueryIntelligenceAgent(query, options.mode, apiKeys).then(r => {
+          emit({
+            agent: "query-intelligence-agent",
+            status: r.error ? "failed" : "done",
+            model: r.model_used,
+            provider: r.provider,
+            durationMs: r.durationMs,
+            isFallback: r.isFallback,
+            error: r.error,
+          });
+          return r;
+        }),
+    (MODE_CONFIG[options.mode].maxSources > 0 && !disabled.includes("web-search-agent")) ? runWebSearchAgent(
+      { query, enhanced_query: query },
       options.mode,
       apiKeys
     ).then(r => {
@@ -205,13 +217,17 @@ export async function runResearch(
       provider: "none",
       durationMs: 0,
       isFallback: false,
-    } as AgentResult),
+      error: disabled.includes("web-search-agent") ? "skipped" : undefined,
+    } as AgentResult).then((r) => { 
+        if (disabled.includes("web-search-agent")) emit({ agent: r.agent, status: "skipped" }); 
+        return r; 
+    }),
   ]);
 
   // Build shared AgentContext from Phase 1 outputs
   const webResults: SearchResult[] = (searchResult.output.raw_results as SearchResult[]) ?? [];
-  const enhancedQuery = queryResult.enhanced_query || query;
-  const subtopics = queryResult.subtopics || [];
+  const enhancedQuery = (queryResult as any).enhanced_query || query;
+  const subtopics = (queryResult as any).subtopics || [];
   const intent = (queryResult.output.intent as ResearchResult["metadata"]["intent"]) ||
     enhanceQuery(query, options.mode).intent;
 
@@ -229,13 +245,30 @@ export async function runResearch(
   // PHASE 2: Analysis + Summary + Coding + Fact-Check (parallel)
   // ═══════════════════════════════════════════════════════════
 
-  emit({ agent: "analysis-agent", status: "running", model: "deepseek-ai/deepseek-v3.2", provider: "nvidia" });
+  emit({ agent: "analysis-agent", status: "running", model: "nvidia/nemotron-3-super-120b-a12b", provider: "nvidia" });
   emit({ agent: "summary-agent", status: "running", model: "minimaxai/minimax-m2.7", provider: "nvidia" });
   emit({ agent: "coding-agent", status: intent === "coding" ? "running" : "skipped", model: "qwen/qwen3-coder-480b-a35b-instruct", provider: "nvidia" });
   emit({ agent: "fact-check-agent", status: "running", model: "mistralai/mistral-large-3-675b-instruct-2512", provider: "nvidia" });
 
+  const skipAgent = (agentName: AgentName, basePromise: Promise<AgentResult>) => {
+    if (disabled.includes(agentName)) {
+      const skippedR: AgentResult = {
+        agent: agentName,
+        output: {},
+        model_used: "none",
+        provider: "none",
+        durationMs: 0,
+        isFallback: false,
+        error: "skipped",
+      };
+      emit({ agent: agentName, status: "skipped" });
+      return Promise.resolve(skippedR);
+    }
+    return basePromise;
+  };
+
   const [analysisResult, summaryResult, codingResult, factCheckResult] = await Promise.all([
-    runAnalysisAgent(agentContext, apiKeys).then(r => {
+    skipAgent("analysis-agent", runAnalysisAgent(agentContext, apiKeys).then(r => {
       emit({
         agent: "analysis-agent",
         status: r.error ? "failed" : "done",
@@ -246,8 +279,8 @@ export async function runResearch(
         error: r.error,
       });
       return r;
-    }),
-    runSummaryAgent(agentContext, apiKeys).then(r => {
+    })),
+    skipAgent("summary-agent", runSummaryAgent(agentContext, apiKeys).then(r => {
       emit({
         agent: "summary-agent",
         status: r.error ? "failed" : "done",
@@ -258,8 +291,8 @@ export async function runResearch(
         error: r.error,
       });
       return r;
-    }),
-    runCodingAgent(agentContext, apiKeys).then(r => {
+    })),
+    skipAgent("coding-agent", runCodingAgent(agentContext, apiKeys).then(r => {
       emit({
         agent: "coding-agent",
         status: r.error === "skipped" ? "skipped" : r.error ? "failed" : "done",
@@ -270,8 +303,8 @@ export async function runResearch(
         error: r.error,
       });
       return r;
-    }),
-    runFactCheckAgent(agentContext, apiKeys).then(r => {
+    })),
+    skipAgent("fact-check-agent", runFactCheckAgent(agentContext, apiKeys).then(r => {
       emit({
         agent: "fact-check-agent",
         status: r.error ? "failed" : "done",
@@ -282,7 +315,7 @@ export async function runResearch(
         error: r.error,
       });
       return r;
-    }),
+    })),
   ]);
 
   // ═══════════════════════════════════════════════════════════

@@ -1,8 +1,11 @@
 "use client";
 
-import { SlidersHorizontal } from "lucide-react";
+import { SlidersHorizontal, Settings2 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { ModelSelector } from "./model-selector";
+import { AgentSettingsModal } from "@/components/agents/agent-settings-modal";
+import { useState } from "react";
+import type { AgentName } from "@/lib/engine/types";
 
 type SearchMode = "pro" | "deep" | "corpus";
 
@@ -11,6 +14,8 @@ interface SearchControlsProps {
   onModeChange: (mode: SearchMode) => void;
   selectedModel: string;
   onModelChange: (model: string) => void;
+  disabledAgents: AgentName[];
+  onToggleAgent: (agent: AgentName) => void;
 }
 
 const modes: { value: SearchMode; label: string }[] = [
@@ -24,7 +29,11 @@ export function SearchControls({
   onModeChange,
   selectedModel,
   onModelChange,
+  disabledAgents,
+  onToggleAgent,
 }: SearchControlsProps) {
+  const [settingsOpen, setSettingsOpen] = useState(false);
+
   return (
     <div className="flex flex-wrap items-center gap-2 px-1">
       {/* Mode toggles */}
@@ -48,11 +57,21 @@ export function SearchControls({
       {/* Model selector */}
       <ModelSelector selected={selectedModel} onSelect={onModelChange} />
 
-      {/* Filter button */}
-      <button className="glass flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-xs font-medium text-muted-foreground transition-all hover:text-foreground">
-        <SlidersHorizontal className="h-3 w-3" />
-        Filters
+      {/* Settings button */}
+      <button 
+        onClick={() => setSettingsOpen(true)}
+        className="glass flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-xs font-medium text-muted-foreground transition-all hover:text-foreground"
+      >
+        <Settings2 className="h-3 w-3" />
+        Settings
       </button>
+
+      <AgentSettingsModal
+        open={settingsOpen}
+        onOpenChange={setSettingsOpen}
+        disabledAgents={disabledAgents}
+        onToggleAgent={onToggleAgent}
+      />
     </div>
   );
 }

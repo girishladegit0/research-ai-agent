@@ -5,8 +5,8 @@ import { TOKEN_LIMITS } from "../config";
 
 // ── Analysis Agent ─────────────────────────────────────────────
 // Role: Deep analysis, compare insights, identify patterns
-// Primary: deepseek-ai/deepseek-v3.2 (nvidia)
-// Fallback: nvidia/nemotron-3-super-120b-a12b (openrouter)
+// Primary: nvidia/nemotron-3-super-120b-a12b (nvidia)
+// Fallback: nvidia/nemotron-3-super-120b-a12b:free (openrouter)
 
 const SYSTEM_PROMPT = `You are a deep Analysis Agent. Your role is to:
 1. Perform rigorous analysis of the research topic

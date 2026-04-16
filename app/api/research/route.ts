@@ -47,7 +47,12 @@ function streamingResponse(
         // ── Step 1: Classify the query ───────────────────────────
         send("status", { phase: "routing", message: "Analyzing your query..." });
 
-        const { complexity, reason } = await classifyQuery(query, apiKeys);
+        const { complexity: baseComplexity, reason } = await classifyQuery(query, apiKeys);
+        
+        let complexity = baseComplexity;
+        if (body.disabledAgents?.length === 6) {
+          complexity = "simple";
+        }
 
         // Notify frontend which path was chosen
         send("route_decision", { complexity, reason });
@@ -81,6 +86,7 @@ function streamingResponse(
             maxSources: 8,
             files: body.files,
             conversationHistory: body.conversationHistory,
+            disabledAgents: body.disabledAgents,
           },
           apiKeys,
           (chunk, done) => {
@@ -160,6 +166,11 @@ export async function POST(request: Request): Promise<Response> {
       return streamingResponse(body.query.trim(), body, apiKeys);
     }
 
+    if (body.disabledAgents?.length === 6) {
+      const result = await runSimpleChat(body.query.trim(), apiKeys);
+      return NextResponse.json({ success: true, data: result } satisfies ResearchApiResponse);
+    }
+
     // Non-streaming mode — always use research for simplicity
     const result = await runResearch(
       body.query.trim(),
@@ -169,6 +180,7 @@ export async function POST(request: Request): Promise<Response> {
         maxSources: 8,
         files: body.files,
         conversationHistory: body.conversationHistory,
+        disabledAgents: body.disabledAgents,
       },
       apiKeys
     );

@@ -195,6 +195,7 @@ export default function HomePage() {
   const [streamingText, setStreamingText] = useState("");
   const [fullResult, setFullResult] = useState<ResearchResult | null>(null);
   const [conversationHistory, setConversationHistory] = useState<LLMMessage[]>([]);
+  const [disabledAgents, setDisabledAgents] = useState<AgentName[]>([]);
   const abortRef = useRef<AbortController | null>(null);
 
   // ── Routing State ─────────────────────────────────────────────
@@ -236,6 +237,12 @@ export default function HomePage() {
     setMode(historyMode as "pro" | "deep" | "corpus");
     setConversationHistory([]);
     setSidebarView("home");
+  }, []);
+
+  const handleToggleAgent = useCallback((agent: AgentName) => {
+    setDisabledAgents(prev => 
+      prev.includes(agent) ? prev.filter(a => a !== agent) : [...prev, agent]
+    );
   }, []);
 
   // ── Clear History Handler ────────────────────────────────────
@@ -326,6 +333,7 @@ export default function HomePage() {
           stream: true,
           files,
           conversationHistory,
+          disabledAgents,
         }),
         signal: abort.signal,
       });
@@ -506,6 +514,8 @@ export default function HomePage() {
                   onModeChange={setMode}
                   selectedModel={selectedModel}
                   onModelChange={setSelectedModel}
+                  disabledAgents={disabledAgents}
+                  onToggleAgent={handleToggleAgent}
                 />
               </div>
             )}
@@ -651,6 +661,8 @@ export default function HomePage() {
                 onModeChange={setMode}
                 selectedModel={selectedModel}
                 onModelChange={setSelectedModel}
+                disabledAgents={disabledAgents}
+                onToggleAgent={handleToggleAgent}
               />
             </div>
           </div>

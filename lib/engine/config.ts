@@ -197,7 +197,7 @@ export const AGENT_MODEL_MAP: Record<
     fallback: "meta-llama/llama-3.3-70b-instruct:free",     // OpenRouter fallback
   },
   analysis: {
-    primary: "deepseek-ai/deepseek-v3.2",
+    primary: "nvidia/nemotron-3-super-120b-a12b",
     fallback: "nvidia/nemotron-3-super-120b-a12b:free",
   },
   coding: {

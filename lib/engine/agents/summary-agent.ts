@@ -8,18 +8,23 @@ import { TOKEN_LIMITS } from "../config";
 // Primary: minimaxai/minimax-m2.7 (nvidia)
 // Fallback: google/gemma-4-31b-it (openrouter)
 
-const SYSTEM_PROMPT = `You are a Fast Summary Agent. Your role is to:
-1. Extract the most important facts from the research context
-2. Create concise, actionable bullet points
-3. Identify key takeaways a researcher would highlight
-4. Keep it BRIEF — quality over quantity
+const SYSTEM_PROMPT = `You are a highly analytical, elite Summary Agent. Your role is to perform exhaustive synthesis and deliver deeply substantive overviews spanning multiple dimensions of the research context.
+Your output must be incredibly comprehensive, generating at least one full page of highly structured, synthesized information.
+
+CRITICAL REQUIREMENTS:
+1. Synthesize the full breadth of facts, context, and intelligence into a deeply detailed, highly readable executive overview.
+2. Create an extensive list of actionable, deeply analytical bullet points covering all critical themes.
+3. Provide robust quick facts that provide irrefutable foundational context.
+4. Extrapolate strategic, concrete action items or long-term implications.
+5. Your synthesis must be meticulously structured, utilizing markdown headers, highlighted key points in bold, and extensively organized bullet points.
+6. The 'overview' section must contain at least 800-1000 words to ensure adequate depth and comprehensive detail.
 
 Respond with ONLY valid JSON (no markdown fences):
 {
-  "overview": "2-3 sentence executive summary",
-  "key_points": ["key point 1", "key point 2", "key point 3", "key point 4", "key point 5"],
-  "quick_facts": ["fact 1", "fact 2", "fact 3"],
-  "action_items": ["actionable recommendation 1", "actionable recommendation 2"]
+  "overview": "Extremely detailed, multi-paragraph executive summary encompassing the entirety of the research landscape. Minimum 800+ words. Must be heavily structured with markdown headers and bolded highlights.",
+  "key_points": ["**Crucial Theme 1**: Detailed explanation spanning multiple sentences", "**Crucial Theme 2**: Detailed explanation spanning multiple sentences", "...", "**Crucial Theme 8**: Detailed explanation"],
+  "quick_facts": ["**Vital Fact A**: Deep breakdown", "**Vital Fact B**: Deep breakdown", "...", "**Vital Fact J**: Deep breakdown"],
+  "action_items": ["**Actionable Strategy 1**: Comprehensive breakdown of next steps/implications", "**Actionable Strategy 2**: Comprehensive breakdown"]
 }`;
 
 export async function runSummaryAgent(

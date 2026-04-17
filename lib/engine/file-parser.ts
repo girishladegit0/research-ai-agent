@@ -32,9 +32,9 @@ export async function parseFile(file: File): Promise<ParsedFile> {
 async function parsePDF(file: File): Promise<string> {
   // Dynamically import pdfjsLib to avoid SSR "DOMMatrix is not defined" issues
   const pdfjsLib = await import('pdfjs-dist');
-  
-  // Setup PDF.js worker
-  pdfjsLib.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjsLib.version}/pdf.worker.min.mjs`;
+
+  // Setup PDF.js worker - use https:// explicitly to avoid protocol-relative URL issues
+  pdfjsLib.GlobalWorkerOptions.workerSrc = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjsLib.version}/pdf.worker.min.mjs`;
 
   const arrayBuffer = await file.arrayBuffer();
   const pdf = await pdfjsLib.getDocument({ data: arrayBuffer }).promise;

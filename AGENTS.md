@@ -11,24 +11,7 @@ This manifesto defines the roles and orchestration rules for the ResAgent multi-
 
 | Agent | Purpose | Primary Model |
 | :--- | :--- | :--- |
-| **Query Intelligence** | Refines and enhances raw user prompts. | `kimi-k2-thinking` |
-| **Web Search** | Concurrent real-time data retrieval. | `dracarys-70b` |
-| **Strategic A
-| **Fact-Check** | Automated verification of claims vs sources. | `mistr
-| **Coding** | Specialized technical snippet generation. | 
-
-The system follows a three-phase execution model managed by `orchestrator.ts`:
-
-1.  **Intelligence Phase**: Intent classification and query expansion.
-2.  **Retrieval Phase**: Concurrent web search and local file parsing (PDF/OCR).
-3.  **Synthesis Phase**: Parallel heavy-lifting (Analysis, Coding, Fact-Check) followed by a sequential Report synthesis.
-
-## 🛡️ Reliability & Fallbacks
-
-- **Chain of Command**: If an NVIDIA NIM model fails, the system automatically shifts to an equivalent **OpenRouter** fallback (optimized for free-tier resiliency).
-- **Concurrency**: Agents in Phase 3 run in parallel using `Promise.all` to minimize time-to-first-token (TTFT).
-- **Context Grounding**: All agents must receive the `AgentContext` which includes search results and user-uploaded files.
-
+| **Query Intelligence** | Refines and enhances raw us
 ## 📏 Token Governance
 
 | Rule | Limit |

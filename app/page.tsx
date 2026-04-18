@@ -495,23 +495,6 @@ export default function HomePage() {
         <div className="flex flex-1 flex-col items-center justify-start overflow-y-auto px-4 pb-48 md:pb-52">
           <div className="w-full max-w-3xl">
 
-            {/* Hero */}
-            {showHero && (
-              <motion.div
-                initial={{ opacity: 0, scale: 0.97 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-                className="text-center"
-              >
-                <h1 className="mb-5 text-4xl font-heading font-bold tracking-[-0.02em] md:text-5xl leading-[1.1]">
-                  What do you want to <span className="text-gradient">research?</span>
-                </h1>
-                <p className="text-base text-muted-foreground md:text-lg max-w-md mx-auto leading-relaxed">
-                  Powered by deep reasoning and multi-agent coordination.
-                </p>
-              </motion.div>
-            )}
-
             {(hasResponse || isLoading) && <div className="mt-6 md:mt-10" />}
 
             {/* Routing badge */}
@@ -641,10 +624,10 @@ export default function HomePage() {
         </div>
 
         {/* Unified sleek floating bottom search bar OR centered hero bar */}
-        <div 
+        <div
           className={
-            showHero 
-              ? "absolute inset-0 z-30 flex flex-col items-center md:pt-[33vh] pt-[30vh] pointer-events-none px-4" 
+            showHero
+              ? "absolute inset-0 z-30 flex flex-col items-center md:pt-[22vh] pt-[18vh] pointer-events-none px-4"
               : "absolute inset-x-0 bottom-0 z-30 flex justify-center pb-6 pt-10 pointer-events-none"
           }
         >
@@ -652,8 +635,25 @@ export default function HomePage() {
           {!showHero && (
             <div className="absolute inset-x-0 bottom-0 top-0 bg-gradient-to-t from-background via-background/80 to-transparent pointer-events-none" />
           )}
-          
-          <motion.div 
+
+          {/* Hero headline — sits directly above search bar */}
+          {showHero && (
+            <motion.div
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+              className="text-center mb-8 pointer-events-none"
+            >
+              <h1 className="mb-4 text-4xl font-heading font-bold tracking-[-0.02em] md:text-5xl leading-[1.1]">
+                What do you want to <span className="text-gradient">research?</span>
+              </h1>
+              <p className="text-base text-muted-foreground md:text-lg max-w-md mx-auto leading-relaxed">
+                Powered by deep reasoning and multi-agent coordination.
+              </p>
+            </motion.div>
+          )}
+
+          <motion.div
             layout
             initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}

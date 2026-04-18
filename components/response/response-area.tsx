@@ -35,99 +35,72 @@ function extractCodeBlock(content: string): { language: string; code: string } {
 function renderContent(text: string) {
   if (!text) return text;
 
-  // 1. First, handle markdown links: [text](url)
-  const linkRegex = /\[([\s\S]*?)\]\((https?:\/\/[^\s\)]+)\)/g;
-  
-  // Use a recursive-style approach to handle multiple formatting types
-  let parts: (string | JSX.Element)[] = [text];
+  // Combined Regex for: 1. Links, 2. Bold, 3. Italic
+  // Note: We use capture groups to identify which one matched
+  const combinedRegex = /(\[[\s\S]*?\]\(https?:\/\/[^\s\)]+\))|(\*\*[\s\S]*?\*\*)|(\*[\s\S]*?\*)/g;
 
-  // Pass 1: Handle Links
-  let stage1: (string | JSX.Element)[] = [];
-  parts.forEach(part => {
-    if (typeof part !== "string") {
-      stage1.push(part);
-      return;
-    }
-    const regex = new RegExp(linkRegex);
-    let lastIndex = 0;
-    let match;
-    while ((match = regex.exec(part)) !== null) {
-      if (match.index > lastIndex) {
-        stage1.push(part.slice(lastIndex, match.index));
-      }
-      const linkText = match[1].replace(/\*/g, ""); // Clean any asterisks inside link text
-      const url = match[2];
-      stage1.push(
-        <a
-          key={`link-${match.index}`}
-          href={url}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex items-center gap-1.5 px-3 py-1 my-0.5 font-bold text-xs text-primary bg-primary/10 hover:bg-primary/20 border border-primary/20 rounded-md transition-all cursor-pointer no-underline"
-        >
-          {linkText} ↗
-        </a>
-      );
-      lastIndex = regex.lastIndex;
-    }
-    if (lastIndex < part.length) {
-      stage1.push(part.slice(lastIndex));
-    }
-  });
+  const parts = [];
+  let lastIndex = 0;
+  let match;
 
-  // Pass 2: Handle Bold (**text**)
-  let stage2: (string | JSX.Element)[] = [];
-  stage1.forEach(part => {
-    if (typeof part !== "string") {
-      stage2.push(part);
-      return;
+  while ((match = combinedRegex.exec(text)) !== null) {
+    // 1. Add text before the match
+    if (match.index > lastIndex) {
+      parts.push(text.slice(lastIndex, match.index));
     }
-    const boldRegex = /\*\*([\s\S]*?)\*\*/g;
-    let lastIndex = 0;
-    let match;
-    while ((match = boldRegex.exec(part)) !== null) {
-      if (match.index > lastIndex) {
-        stage2.push(part.slice(lastIndex, match.index));
+
+    if (match[1]) {
+      // It's a Link: [text](url)
+      const linkMatch = match[1].match(/\[([\s\S]*?)\]\((https?:\/\/[^\s\)]+)\)/);
+      if (linkMatch) {
+        const linkText = linkMatch[1].replace(/\*/g, "").trim();
+        const url = linkMatch[2];
+        parts.push(
+          <a
+            key={`link-${match.index}`}
+            href={url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1.5 px-3 py-1 my-0.5 font-bold text-xs text-primary bg-primary/10 hover:bg-primary/20 border border-primary/20 rounded-md transition-all cursor-pointer no-underline"
+          >
+            {linkText} ↗
+          </a>
+        );
       }
-      stage2.push(
+    } else if (match[2]) {
+      // It's Bold: **text**
+      const boldText = match[2].slice(2, -2);
+      parts.push(
         <strong key={`bold-${match.index}`} className="font-bold text-foreground">
-          {match[1]}
+          {boldText}
         </strong>
       );
-      lastIndex = boldRegex.lastIndex;
-    }
-    if (lastIndex < part.length) {
-      stage2.push(part.slice(lastIndex));
-    }
-  });
-
-  // Pass 3: Handle Italic (*text*)
-  let stage3: (string | JSX.Element)[] = [];
-  stage2.forEach(part => {
-    if (typeof part !== "string") {
-      stage3.push(part);
-      return;
-    }
-    const italicRegex = /\*([\s\S]*?)\*/g;
-    let lastIndex = 0;
-    let match;
-    while ((match = italicRegex.exec(part)) !== null) {
-      if (match.index > lastIndex) {
-        stage3.push(part.slice(lastIndex, match.index));
-      }
-      stage3.push(
+    } else if (match[3]) {
+      // It's Italic: *text*
+      const italicText = match[3].slice(1, -1);
+      parts.push(
         <em key={`italic-${match.index}`} className="italic text-muted-foreground">
-          {match[1]}
+          {italicText}
         </em>
       );
-      lastIndex = italicRegex.lastIndex;
     }
-    if (lastIndex < part.length) {
-      stage3.push(part.slice(lastIndex));
-    }
-  });
 
-  return stage3.length > 0 ? stage3 : text;
+    lastIndex = combinedRegex.lastIndex;
+  }
+
+  // 2. Add remaining text
+  if (lastIndex < text.length) {
+    parts.push(text.slice(lastIndex));
+  }
+
+  // 3. Final cleanup for stray characters and rendering
+  return parts.map((part, i) => {
+    if (typeof part === "string") {
+      // Remove any stray markdown markers that might have leaked
+      return part.replace(/[\*\_\~]/g, "");
+    }
+    return part;
+  });
 }
 
 export function ResponseArea({ sections, isStreaming }: ResponseAreaProps) {

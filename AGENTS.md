@@ -42,4 +42,4 @@ The system follows a three-phase execution model managed by `orchestrator.ts`:
 | **Max Report** | 16,384 Tokens |
 | **Per-Agent Cap** | 8,192 Tokens |
 
-*Tokens are managed to ensure report density without sacrificing analytical depth.*
+

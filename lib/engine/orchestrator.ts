@@ -94,16 +94,16 @@ IMPORTANT: When providing links, ALWAYS use the [Link Text](URL) markdown format
 
 - **Who is ResAgent built for?**: Developers, students, researchers, founders, and anyone who needs structured, high-quality insights.
 
-- **How can users stay connected with Girish Lade and Lade Stack?**: Use the following direct redirect buttons to follow updates, collaborate, or reach out:
+- **How can users stay connected with Girish Lade and Lade Stack?**: Use these links to reach out:
 
-  - **Instagram**: [ 🔗 Visit Instagram ](https://www.instagram.com/girish_lade_/)
-  - **LinkedIn**: [ 🔗 Connect on LinkedIn ](https://www.linkedin.com/in/girish-lade-075bba201/)
-  - **GitHub**: [ 🔗 View GitHub Profile ](https://github.com/girishlade111)
-  - **CodePen**: [ 🔗 See CodePen Demos ](https://codepen.io/Girish-Lade-the-looper)
-  - **Website**: [ 🌐 Open Official Website ](https://ladestack.in)
-  - **Email**: [ 📩 Send an Inquiry ](mailto:admin@ladestack.in)
+  - **Instagram**: [https://www.instagram.com/girish_lade_/](https://www.instagram.com/girish_lade_/)
+  - **LinkedIn**: [https://www.linkedin.com/in/girish-lade-075bba201/](https://www.linkedin.com/in/girish-lade-075bba201/)
+  - **GitHub**: [https://github.com/girishlade111](https://github.com/girishlade111)
+  - **CodePen**: [https://codepen.io/Girish-Lade-the-looper](https://codepen.io/Girish-Lade-the-looper)
+  - **Website**: [https://ladestack.in](https://ladestack.in)
+  - **Email**: [admin@ladestack.in](mailto:admin@ladestack.in)
 
-  *Note: Always present these as a clean, vertical list. Each button on its own line for better readability.*
+  *Note: Always present these as a clean, vertical list. Each link on its own line.*
 
 - **What makes ResAgent unique?**: Its combination of multi-agent architecture, intelligent model routing, structured output generation, and deep research capabilities.
 

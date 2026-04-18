@@ -626,17 +626,26 @@ export default function HomePage() {
           </div>
         </div>
 
-        {/* Unified sleek floating bottom search bar */}
-        <div className="fixed inset-x-0 bottom-0 z-30 flex justify-center pb-6 pt-10 pointer-events-none">
-          {/* Fading gradient background for text readability */}
-          <div className="absolute inset-x-0 bottom-0 top-0 bg-gradient-to-t from-background via-background/80 to-transparent pointer-events-none" />
+        {/* Unified sleek floating bottom search bar OR centered hero bar */}
+        <div 
+          className={
+            showHero 
+              ? "absolute inset-0 z-30 flex flex-col items-center md:pt-[33vh] pt-[30vh] pointer-events-none px-4" 
+              : "absolute inset-x-0 bottom-0 z-30 flex justify-center pb-6 pt-10 pointer-events-none"
+          }
+        >
+          {/* Fading gradient background for text readability only when sticky bottom */}
+          {!showHero && (
+            <div className="absolute inset-x-0 bottom-0 top-0 bg-gradient-to-t from-background via-background/80 to-transparent pointer-events-none" />
+          )}
           
           <motion.div 
+            layout
             initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
-            className="w-full max-w-3xl px-4 relative z-10 pointer-events-auto"
+            className="w-full max-w-3xl relative z-10 pointer-events-auto"
           >
-            <div className="glass-strong rounded-[2rem] p-3 md:p-4 shadow-2xl glow-md">
+            <div className={`rounded-[2rem] p-3 md:p-4 transition-all duration-500 ${showHero ? "glass-strong shadow-2xl glow-lg" : "glass shadow-2xl glow-md"}`}>
               <SearchInput
                 value={query}
                 onChange={setQuery}

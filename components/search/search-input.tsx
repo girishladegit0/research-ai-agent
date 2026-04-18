@@ -186,10 +186,10 @@ export function SearchInput({
             }
           }}
           disabled={!value.trim() || isLoading || isParsing}
-          className="absolute right-3 top-1/2 -translate-y-1/2 rounded-full bg-gradient-to-r from-primary to-[#af5cfe] p-2.5 text-[#33005b] hover:from-[#c180ff] hover:to-[#c180ff] transition-all hover:glow-sm disabled:opacity-40"
+          className="absolute right-3 top-1/2 -translate-y-1/2 rounded-full bg-gradient-to-r from-primary to-secondary p-2.5 text-primary-foreground hover:from-secondary hover:to-secondary transition-all hover:glow-sm disabled:opacity-40"
         >
           {isLoading ? (
-            <Loader2 className="h-4 w-4 animate-spin text-[#33005b]" />
+            <Loader2 className="h-4 w-4 animate-spin text-primary-foreground" />
           ) : (
             <Send className="h-4 w-4" />
           )}

@@ -1,137 +1,131 @@
 # 🔬 Research Agent Orchestrator
 
+<div align="center">
+
 [![Next.js](https://img.shields.io/badge/Next.js-16.2.4-black?style=for-the-badge&logo=next.js)](https://nextjs.org/)
 [![React](https://img.shields.io/badge/React-19.2.4-61DAFB?style=for-the-badge&logo=react)](https://react.dev/)
 [![Tailwind](https://img.shields.io/badge/Tailwind_CSS-4.0-38B2AC?style=for-the-badge&logo=tailwind-css)](https://tailwindcss.com/)
 [![NVIDIA NIM](https://img.shields.io/badge/NVIDIA-NIM-76B900?style=for-the-badge&logo=nvidia)](https://www.nvidia.com/en-us/ai/)
 
-An advanced, multi-agent AI research engine designed to generate structured, accurate, and insightful research reports. Powered by high-performance LLMs, sequential orchestration logic, and real-time multi-provider search capabilities.
+**Next-Generation Multi-Agent Research Engine**
+*Transforming raw queries into structured, verified intelligence reports.*
+
+</div>
 
 ---
 
-## ✨ Core Features
+## 🏗️ System Architecture & Flow
 
-*   **🌐 Multi-Provider Intelligence**: Seamlessly integrates with **NVIDIA NIM**, **OpenRouter**, and **Perplexity AI (Sonar)** for superior reasoning and real-time search.
-*   **🤖 Sequential Agent Orchestration**: A specialized fleet of agents working in a structured pipeline:
-    *   **Query Intelligence**: Refines and enhances user prompts for maximum search relevance.
-    *   **Web Search**: Concurrent real-time retrieval via Perplexity Sonar.
-    *   **Strategic Analysis**: Deep processing and insight extraction from multi-source data.
-    *   **Verification (Fact-Check)**: Automated claim verification against trusted secondary sources.
-    *   **Report Synthesis**: Structured, publication-ready formatting via specialized report agents.
-*   **🧠 Intent-Based Routing**: Dynamic classification (Coding, Research, Comparison, Factual, Explanation) ensures the optimal model is used for every task.
-*   **⚡ Real-Time SSE Streaming**: Instant feedback via Server-Sent Events—watch the agent's thought process, updates, and generation as it happens.
-*   **📄 Unified File Parsing**: Deep context grounding with support for:
-    *   `PDF` via **PDF.js**
-    *   `DOCX` via **Mammoth**
-    *   `CSV` via **PapaParse**
-    *   `Images (OCR)` via **Tesseract.js**
-*   **🛡️ Reliability First**: Professional-grade fallback chains and exponential backoff retry logic.
+The system operates on an asynchronous state machine that prioritizes query intelligence before search execution to minimize hallucinatory drift.
 
----
-
-## 🛠️ Technology Stack
-
-### **Frontend & UI**
-- **Framework**: [Next.js 16.2.4](https://nextjs.org/) (App Router & Server Actions)
-- **Library**: [React 19.2.4](https://react.dev/)
-- **Styling**: [Tailwind CSS 4.0](https://tailwindcss.com/) with `tw-animate-css`
-- **Animations**: [Framer Motion 12](https://www.framer.com/motion/)
-- **Icons**: [Lucide React](https://lucide.dev/)
-- **Components**: [Base UI](https://base-ui.com/) & [shadcn/ui](https://ui.shadcn.com/)
-
-### **Engine & Orchestration**
-- **LLM Providers**: NVIDIA NIM (Primary), OpenRouter (Fallback)
-- **Search Engine**: Perplexity Sonar / Sonar Pro
-- **File Processing**: PDF.js, Mammoth.js, PapaParse, Tesseract.js
-- **Protocol**: Server-Sent Events (SSE) for real-time orchestration
-
----
-
-## ⚙️ Configuration & Environment
-
-Create a `.env.local` file in the root directory to configure the engine:
-
-```env
-# Primary Research & Generation
-PERPLEXITY_API_KEY=your_perplexity_key
-NVIDIA_API_KEY=your_nvidia_key
-
-# Secondary / Fallback Support
-OPENROUTER_API_KEY=your_openrouter_key
+```mermaid
+graph TD
+    A[User Query] --> B{Query Router}
+    B -->|Simple| C[Standard Chat]
+    B -->|Research| D[Agent Orchestrator]
+    
+    subgraph "Phase 1: Intelligence"
+    D --> E[Query Intelligence Agent]
+    E -->|Refinement| F[Enhanced Prompt]
+    end
+    
+    subgraph "Phase 2: Retrieval"
+    F --> G[Web Search Agent]
+    G -->|Concurrent Search| H[Source Aggregator]
+    H -->|Local Context| I[File Parsers]
+    end
+    
+    subgraph "Phase 3: Analysis & Synthesis"
+    H & I --> J[Analysis Agent]
+    H & I --> K[Fact-Check Agent]
+    H & I --> L[Coding Agent]
+    J & K & L --> M[Report Synthesis Agent]
+    end
+    
+    M --> N[SSE Stream Response]
 ```
 
-### **System Parameters**
-| Parameter | Value | Description |
-| :--- | :--- | :--- |
-| **Context Window** | 32,768 Tokens | Maximum input/context budget |
-| **Max Response** | 16,384 Tokens | Cap for overall report generation |
-| **Agent Budget** | 8,192 Tokens | Per-agent token limit to prevent drift |
-| **Retry Logic** | 1 Max Retry | Fallback chains preferred over multiple retries |
-| **Search Density** | Up to 8 Sources | Scalable based on mode (Corpus, Deep, Pro) |
+---
+
+## ⚡ Core Features Breakdown
+
+*   **🌐 Intelligent Retrieval**: Powered by **Perplexity Sonar**, executing targeted concurrent searches based on agent-generated keywords rather than raw user input.
+*   **🤖 Specialized Fleet Ops**:
+    *   **Query Intelligence**: Automatically identifies sub-topics and cross-references them with primary intent.
+    *   **Strategic Analysis**: Uses `NVIDIA/Nemotron-3-Super` for high-density reasoning and data synthesis.
+    *   **Automated Verification**: The **Fact-Check Agent** compares synthesized claims against retrieved search snippets to flag contradictions.
+    *   **Expert Synthesis**: Final reports are generated using `MoonshotAI/Kimi-K2-Thinking` for superior markdown structure and readability.
+*   **🧠 Adaptive Routing**: Automatically shifts between specialized models for **Coding** (`Qwen-3-Coder`), **Reasoning**, and **Summarization** to optimize for both cost and quality.
+*   **📄 Multi-Modal Intake**: Unified ingestion engine for `PDF`, `DOCX`, `CSV`, and `Images (OCR)` using high-performance WASM and browser-native libraries.
+*   **🌊 Dynamic SSE Streaming**: Full transparency into the orchestration process. Real-time updates for every agent transition, latency metric, and model selection.
 
 ---
 
-## 🤖 Integrated Intelligence Registry
+## 📖 Documentation & Integration
 
-| Category | Primary Model (NVIDIA NIM) | Fallback (OpenRouter) |
+### **Agent Roles & Responsibilities**
+*   **Analysis Agent**: Processes up to 8 distinct sources to find patterns, correlations, and strategic insights.
+*   **Fact-Check Agent**: Performs cross-source validation. If Source A contradicts Source B, it flags the discrepancy in the "Verification" section.
+*   **Coding Agent**: Activated only when `intent == "coding"`. Provides optimized snippets and architecture explanations.
+*   **Report Agent**: The final "Editor-in-Chief" that ensures the final Markdown output remains professional and consistent.
+
+### **API Endpoints**
+| Method | Path | Description |
 | :--- | :--- | :--- |
-| **Reasoning** | `moonshotai/kimi-k2-thinking` | `openai/gpt-oss-120b:free` |
-| **Balanced** | `abacusai/dracarys-llama-3.1-70b` | `meta-llama/llama-3.3-70b:free` |
-| **Coding** | `qwen/qwen3-coder-480b-a35b` | `qwen/qwen3-coder:free` |
-| **Fact-Check** | `mistralai/mistral-large-3` | `meta-llama/llama-3.3-70b:free` |
-| **Fast** | `minimaxai/minimax-m2.7` | `google/gemma-4-31b:free` |
-
----
-
-## 📊 Performance Statistics
-
-*   **⚡ Ultra-Low Latency**: Under **500ms** Time-to-First-Token (TTFT) using NVIDIA's accelerated infrastructure.
-*   **🏗️ Orchestration Efficiency**: Sequential logic ensures query intelligence precedes search, reducing "hallucinatory drift" by **35%**.
-*   **🔄 Resilience**: High availability (**99.9%**) through multi-provider state management.
-*   **🔍 Accurate Grounding**: Multi-file parsing allows for grounding in local documentation with **100%** data isolation.
+| **POST** | `/api/research` | Main SSE endpoint. Payload: `{ query, mode, files }`. |
+| **GET** | `/api/health` | System health check and API provider validation. |
 
 ---
 
 ## 🚀 Getting Started
 
 ### **1. Installation**
-Ensure you have **Node.js 20+** and **npm** installed.
 ```bash
+# Clone and install
 npm install
 ```
 
-### **2. Setup Environment**
-Duplicate the environment template and add your API keys.
-```bash
-cp .env.example .env.local
+### **2. Environment Setup**
+Create a `.env.local` file with the following keys:
+```env
+# REQUIRED
+PERPLEXITY_API_KEY=xxx
+NVIDIA_API_KEY=xxx
+
+# OPTIONAL (Fallbacks)
+OPENROUTER_API_KEY=xxx
 ```
 
-### **3. Start Development**
-```bash
-npm run dev
-```
-Open [http://localhost:3000](http://localhost:3000) in your browser.
-
-### **4. Usage Workflow**
-1.  **Select Mode**: Choose between **Corpus** (Pure AI), **Deep** (Balanced), or **Pro** (Extensive Research).
-2.  **Input Query**: Enter your research question.
-3.  **Attach Files**: (Optional) Upload PDFs or images to ground the research in your own data.
-4.  **Monitor Progress**: Watch the **Agent Status Panel** as agents transition from *Query Intelligence* to *Summary*.
-5.  **Export Results**: Download the finalized report in Markdown or PDF format.
+### **3. Scripts**
+*   `npm run dev`: Start local development server on port 3000.
+*   `npm run build`: Generate production-optimized build.
+*   `npm run lint`: Execute ESLint validation.
 
 ---
 
-## 📁 Project Architecture
+## 🌐 Connect & Connect
 
-- `app/api/research/`: Main SSE stream for agent orchestration.
-- `lib/engine/`: Core logic containing:
-    - `/agents`: Specialized implementations (`AnalysisAgent`, `CodingAgent`, etc.).
-    - `/providers`: API integration layers for NVIDIA, OpenRouter, and Sonar.
-    - `orchestrator.ts`: The main state machine managing agent transitions.
-- `components/`: Feature-rich UI components:
-    - `/search`: Multi-modal search interface and mode selectors.
-    - `/response`: Citation rendering and structured report displays.
-    - `/agents`: Real-time status indicators and agent feedback.
+<div align="center">
+
+### **Created by Girish Lade**
+
+[![Website](https://img.shields.io/badge/Website-ladestack.in-6366F1?style=for-the-badge&logo=safari&logoColor=white)](https://ladestack.in)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Girish_Lade-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/girish-lade-075bba201/)
+[![GitHub](https://img.shields.io/badge/GitHub-girishlade111-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/girishlade111)
+
+[![Instagram](https://img.shields.io/badge/Instagram-@girish__lade__-E4405F?style=for-the-badge&logo=instagram&logoColor=white)](https://www.instagram.com/girish_lade_/)
+[![CodePen](https://img.shields.io/badge/CodePen-Girish_Lade-000000?style=for-the-badge&logo=codepen&logoColor=white)](https://codepen.io/Girish-Lade-the-looper)
+[![Email](https://img.shields.io/badge/Email-admin@ladestack.in-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:admin@ladestack.in)
+
+</div>
+
+---
+
+## 📁 Project Structure
+
+*   `app/api/research/`: Orchestrator execution layer.
+*   `lib/engine/`: Core logic including agent prompts, model routers, and file parsers.
+*   `components/`: Glassmorphic UI layout and agent tracking panels.
 
 ---
 

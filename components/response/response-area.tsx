@@ -54,9 +54,10 @@ function renderContent(text: string) {
         href={url}
         target="_blank"
         rel="noopener noreferrer"
-        className="inline-flex items-center gap-1.5 font-bold text-primary hover:text-primary/80 underline underline-offset-4 decoration-primary/40 hover:decoration-primary/70 transition-all cursor-pointer bg-primary/5 px-2 py-0.5 rounded-md border border-primary/10 hover:bg-primary/10"
+        className="inline-flex items-center gap-2 px-4 py-2 my-1 font-bold text-sm text-primary bg-primary/10 hover:bg-primary/20 border border-primary/20 hover:border-primary/40 rounded-xl transition-all shadow-sm hover:shadow-md cursor-pointer no-underline group"
       >
-        {linkText.replace(/\*\*/g, "")} {/* Remove bold markdown for cleaner UI inside the link */}
+        <span>{linkText.replace(/\*\*/g, "").trim()}</span>
+        <span className="text-xs opacity-50 group-hover:translate-x-0.5 transition-transform">→</span>
       </a>
     );
 

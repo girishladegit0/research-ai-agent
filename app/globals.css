@@ -47,39 +47,56 @@
   --color-accent-gold: var(--accent-gold);
 }
 
-/* ── Midnight Indigo + Gold — Premium Dark Theme ─────────────── */
+/* ══════════════════════════════════════════════════════════════
+   Royal Obsidian — Rich & Premium Dark Theme
+   ══════════════════════════════════════════════════════════════ */
 :root {
-  --background: #0A0F1E;
-  --foreground: #F1F5F9;
-  --card: #111827;
-  --card-foreground: #F1F5F9;
-  --popover: #1E293B;
-  --popover-foreground: #F1F5F9;
-  --primary: #6366F1;
+  /* ── Deep layered backgrounds ─────────────────────────────── */
+  --background: #06080F;
+  --foreground: #EAECF5;
+  --card: #0C1021;
+  --card-foreground: #EAECF5;
+  --popover: #131A2E;
+  --popover-foreground: #EAECF5;
+
+  /* ── Rich violet-indigo primary ───────────────────────────── */
+  --primary: #7C5CFC;
   --primary-foreground: #FFFFFF;
-  --secondary: #818CF8;
-  --secondary-foreground: #FFFFFF;
-  --muted: #111827;
-  --muted-foreground: #94A3B8;
-  --accent: #1E293B;
-  --accent-foreground: #F1F5F9;
-  --destructive: #F87171;
-  --border: #1E293B;
-  --input: #111827;
-  --ring: #6366F1;
+
+  /* ── Warm champagne-gold secondary ────────────────────────── */
+  --secondary: #D4A853;
+  --secondary-foreground: #0C1021;
+
+  /* ── Neutral surfaces ─────────────────────────────────────── */
+  --muted: #0C1021;
+  --muted-foreground: #7A839E;
+  --accent: #131A2E;
+  --accent-foreground: #EAECF5;
+
+  /* ── Semantic ─────────────────────────────────────────────── */
+  --destructive: #EF4444;
+
+  /* ── Borders & inputs ─────────────────────────────────────── */
+  --border: #1A2240;
+  --input: #0C1021;
+  --ring: #7C5CFC;
   --radius: 0.625rem;
-  --sidebar: #0E1529;
-  --sidebar-foreground: #94A3B8;
-  --sidebar-primary: #6366F1;
+
+  /* ── Sidebar ──────────────────────────────────────────────── */
+  --sidebar: #080B16;
+  --sidebar-foreground: #7A839E;
+  --sidebar-primary: #7C5CFC;
   --sidebar-primary-foreground: #FFFFFF;
-  --sidebar-accent: #1E293B;
-  --sidebar-accent-foreground: #F1F5F9;
-  --sidebar-border: #1E293B;
-  --sidebar-ring: #6366F1;
-  --glow: #6366F1;
-  --glass: rgba(17, 24, 39, 0.75);
-  --glass-border: rgba(30, 41, 59, 0.6);
-  --accent-gold: #C9A84C;
+  --sidebar-accent: #131A2E;
+  --sidebar-accent-foreground: #EAECF5;
+  --sidebar-border: #1A2240;
+  --sidebar-ring: #7C5CFC;
+
+  /* ── Effects ──────────────────────────────────────────────── */
+  --glow: #7C5CFC;
+  --glass: rgba(12, 16, 33, 0.8);
+  --glass-border: rgba(26, 34, 64, 0.7);
+  --accent-gold: #D4A853;
 }
 
 @layer base {
@@ -103,23 +120,24 @@
     @apply bg-transparent;
   }
   ::-webkit-scrollbar-thumb {
-    @apply rounded-full bg-[#334155] hover:bg-[#6366F1] transition-colors;
+    @apply rounded-full bg-[#1A2240] hover:bg-[#7C5CFC] transition-colors;
   }
 }
 
 @layer utilities {
+  /* ── Glass Effects ─────────────────────────────────────────── */
   .glass {
     @apply bg-[var(--glass)] border border-[var(--glass-border)] backdrop-blur-xl;
   }
 
   .glass-card {
-    background: #111827;
-    border: 1px solid rgba(30, 41, 59, 0.8);
+    background: rgba(12, 16, 33, 0.9);
+    border: 1px solid rgba(26, 34, 64, 0.85);
   }
 
   .glass-strong {
-    background: #1E293B;
-    border: 1px solid rgba(51, 65, 85, 0.6);
+    background: rgba(19, 26, 46, 0.92);
+    border: 1px solid rgba(26, 34, 64, 0.7);
   }
 
   /* ── Decorative Streaks ────────────────────────────────────── */
@@ -132,54 +150,55 @@
   }
   .streak-1 {
     position: absolute;
-    width: 60vw;
-    height: 3px;
-    background: #6366F1;
-    top: 25%;
-    left: 15%;
-    transform: rotate(10deg);
-    filter: blur(50px);
-    opacity: 0.4;
+    width: 65vw;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #7C5CFC, transparent);
+    top: 22%;
+    left: 10%;
+    transform: rotate(8deg);
+    filter: blur(60px);
+    opacity: 0.35;
   }
   .streak-2 {
     position: absolute;
-    width: 50vw;
-    height: 4px;
-    background: #818CF8;
-    top: 65%;
-    left: 45%;
-    transform: rotate(-5deg);
-    filter: blur(60px);
-    opacity: 0.3;
+    width: 55vw;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, #D4A853, transparent);
+    top: 60%;
+    left: 40%;
+    transform: rotate(-4deg);
+    filter: blur(70px);
+    opacity: 0.2;
   }
   .streak-3 {
     position: absolute;
-    width: 40vw;
-    height: 3px;
-    background: #C9A84C;
-    top: 85%;
-    left: -5%;
-    transform: rotate(15deg);
-    filter: blur(55px);
-    opacity: 0.25;
+    width: 45vw;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #A78BFA, transparent);
+    top: 82%;
+    left: -8%;
+    transform: rotate(12deg);
+    filter: blur(65px);
+    opacity: 0.18;
   }
 
   /* ── Premium Glow Effects ──────────────────────────────────── */
   .primary-glow {
     box-shadow:
-      0 0 40px -10px rgba(99, 102, 241, 0.3),
-      0 0 80px -20px rgba(99, 102, 241, 0.12);
+      0 0 50px -10px rgba(124, 92, 252, 0.35),
+      0 0 100px -25px rgba(124, 92, 252, 0.12);
   }
 
   .gold-glow {
     box-shadow:
-      0 0 50px -12px rgba(99, 102, 241, 0.25),
-      0 0 100px -25px rgba(201, 168, 76, 0.1);
+      0 0 50px -10px rgba(124, 92, 252, 0.28),
+      0 0 120px -30px rgba(212, 168, 83, 0.12),
+      inset 0 1px 0 0 rgba(212, 168, 83, 0.06);
   }
 
   /* ── Premium Gradients ─────────────────────────────────────── */
   .text-gradient {
-    background: linear-gradient(135deg, #F1F5F9 0%, #818CF8 100%);
+    background: linear-gradient(135deg, #EAECF5 0%, #A78BFA 50%, #D4A853 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -196,10 +215,10 @@
     padding: 1px;
     background: linear-gradient(
       135deg,
-      rgba(99, 102, 241, 0.2),
-      transparent 40%,
-      transparent 60%,
-      rgba(201, 168, 76, 0.12)
+      rgba(124, 92, 252, 0.25),
+      transparent 35%,
+      transparent 65%,
+      rgba(212, 168, 83, 0.15)
     );
     mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
     mask-composite: exclude;

@@ -161,7 +161,7 @@ function CodeBlock({ content }: { content: string }) {
   };
 
   return (
-    <div className="overflow-hidden rounded-xl border border-border/60 bg-[#0D1225]">
+    <div className="overflow-hidden rounded-xl border border-border/60 bg-[#080B18]">
       {/* Header bar */}
       <div className="flex items-center justify-between border-b border-border/40 bg-accent/50 px-4 py-2">
         <span className="font-mono text-[11px] font-medium text-muted-foreground/60 uppercase tracking-wider">
@@ -176,7 +176,7 @@ function CodeBlock({ content }: { content: string }) {
       </div>
       {/* Code */}
       <pre className="overflow-x-auto p-4 text-sm leading-relaxed">
-        <code className="text-emerald-400/80 font-mono">{code}</code>
+        <code className="text-violet-300/90 font-mono">{code}</code>
       </pre>
     </div>
   );
@@ -191,21 +191,21 @@ function FactCheckBlock({ content }: { content: string }) {
   const hasWarning = content.toLowerCase().includes("contradiction") || content.toLowerCase().includes("warning");
 
   const borderColor = isHigh
-    ? "border-emerald-500/20"
+    ? "border-teal-500/20"
     : isMedium
-      ? "border-amber-500/20"
+      ? "border-secondary/20"
       : "border-red-500/20";
 
   const bgColor = isHigh
-    ? "bg-emerald-500/4"
+    ? "bg-teal-500/4"
     : isMedium
-      ? "bg-amber-500/4"
+      ? "bg-secondary/4"
       : "bg-red-500/4";
 
   return (
     <div className={`rounded-xl border p-4 ${borderColor} ${bgColor}`}>
       {hasWarning && (
-        <div className="mb-2 flex items-center gap-1.5 text-xs font-medium text-amber-400">
+        <div className="mb-2 flex items-center gap-1.5 text-xs font-medium text-secondary">
           <span>⚠️</span>
           <span>Contradictions detected</span>
         </div>

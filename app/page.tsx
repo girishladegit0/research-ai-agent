@@ -155,8 +155,8 @@ function RoutingBadge({ complexity }: { complexity: "simple" | "research" | null
       className="mb-3 flex items-center gap-2"
     >
       {complexity === "simple" ? (
-        <span className="inline-flex items-center gap-1.5 rounded-full border border-emerald-500/20 bg-emerald-500/8 px-3 py-1.5 text-[11px] font-semibold tracking-wide text-emerald-400 uppercase">
-          <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
+        <span className="inline-flex items-center gap-1.5 rounded-full border border-teal-400/20 bg-teal-400/8 px-3 py-1.5 text-[11px] font-semibold tracking-wide text-teal-300 uppercase">
+          <span className="h-1.5 w-1.5 rounded-full bg-teal-300" />
           Direct Response
         </span>
       ) : (
@@ -595,7 +595,7 @@ export default function HomePage() {
                 transition={{ delay: 0.3 }}
                 className="mt-4 flex flex-wrap items-center gap-2 px-1 text-[11px] text-muted-foreground"
               >
-                <span className={`rounded-md px-2 py-0.5 font-mono ${fullResult.metadata.isFallback ? "bg-amber-500/15 text-amber-400 border border-amber-500/20" : "bg-accent border border-border/50"}`}>
+                <span className={`rounded-md px-2 py-0.5 font-mono ${fullResult.metadata.isFallback ? "bg-secondary/15 text-secondary border border-secondary/20" : "bg-accent border border-border/50"}`}>
                   {fullResult.metadata.isFallback ? "Fallback: " : "Report: "}
                   {fullResult.metadata.model.split("/").pop()} ({fullResult.metadata.provider.toUpperCase()})
                 </span>
@@ -606,7 +606,7 @@ export default function HomePage() {
                   {fullResult.metadata.intent}
                 </span>
                 {fullResult.agentResults && fullResult.agentResults.length > 0 && (
-                  <span className="rounded-md bg-emerald-500/10 px-2 py-0.5 text-emerald-400 border border-emerald-500/15">
+                  <span className="rounded-md bg-teal-500/10 px-2 py-0.5 text-teal-300 border border-teal-400/15">
                     {fullResult.agentResults.filter(r => !r.error || r.error === "skipped").length}/{fullResult.agentResults.length} agents OK
                   </span>
                 )}
@@ -702,7 +702,7 @@ export default function HomePage() {
                   </div>
                   {/* Card 3 */}
                   <div className="glass-card rounded-xl p-6 flex flex-col gap-4 hover:border-primary/30 transition-colors">
-                    <Database className="w-6 h-6 text-[#C9A84C]" />
+                    <Database className="w-6 h-6 text-[#D4A853]" />
                     <h4 className="font-heading text-lg text-foreground">Agentic Architectures</h4>
                     <p className="font-sans text-sm text-muted-foreground">Latest survey on orchestrating multi-LLM systems effectively.</p>
                   </div>

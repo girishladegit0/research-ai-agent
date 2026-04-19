@@ -1078,232 +1078,13 @@
     {
       "type": "frame",
       "id": "LSlQ8",
-      "x": 179,
-      "y": 962,
+      "x": 865,
+      "y": 999,
       "name": "nav",
       "width": "fill_container(232)",
+      "height": "fit_content(44)",
       "layout": "vertical",
-      "gap": 16,
-      "children": [
-        {
-          "type": "frame",
-          "id": "4tZSL",
-          "name": "nav1",
-          "width": "fill_container",
-          "fill": "#222222",
-          "cornerRadius": "$rounded_sm",
-          "gap": 12,
-          "padding": [
-            12,
-            16
-          ],
-          "alignItems": "center",
-          "children": [
-            {
-              "type": "icon_font",
-              "id": "hnC7k",
-              "name": "nav1icon",
-              "width": 20,
-              "height": 20,
-              "iconFontName": "search",
-              "iconFontFamily": "lucide",
-              "fill": "$accent_primary"
-            },
-            {
-              "type": "text",
-              "id": "LLzyO",
-              "name": "nav1text",
-              "fill": "$foreground_inverse",
-              "content": "New Search",
-              "fontFamily": "Inter",
-              "fontSize": 14,
-              "fontWeight": "normal"
-            }
-          ]
-        },
-        {
-          "type": "frame",
-          "id": "1fual",
-          "name": "nav2",
-          "width": "fill_container",
-          "gap": 12,
-          "padding": [
-            12,
-            16
-          ],
-          "alignItems": "center",
-          "children": [
-            {
-              "type": "icon_font",
-              "id": "xfpcC",
-              "name": "nav2icon",
-              "width": 20,
-              "height": 20,
-              "iconFontName": "history",
-              "iconFontFamily": "lucide",
-              "fill": "$foreground_muted"
-            },
-            {
-              "type": "text",
-              "id": "8FWLa",
-              "name": "nav2text",
-              "fill": "$foreground_muted",
-              "content": "History",
-              "fontFamily": "Inter",
-              "fontSize": 14,
-              "fontWeight": "normal"
-            }
-          ]
-        },
-        {
-          "type": "frame",
-          "id": "GeoUb",
-          "name": "nav",
-          "width": "fill_container",
-          "layout": "vertical",
-          "gap": 16,
-          "children": [
-            {
-              "type": "frame",
-              "id": "jEbt7",
-              "name": "nav1",
-              "width": "fill_container",
-              "fill": "#222222",
-              "cornerRadius": "$rounded_sm",
-              "gap": 12,
-              "padding": [
-                12,
-                16
-              ],
-              "alignItems": "center",
-              "children": [
-                {
-                  "type": "icon_font",
-                  "id": "Y9Vrc",
-                  "name": "nav1icon",
-                  "width": 20,
-                  "height": 20,
-                  "iconFontName": "search",
-                  "iconFontFamily": "lucide",
-                  "fill": "$accent_primary"
-                },
-                {
-                  "type": "text",
-                  "id": "4LDQP",
-                  "name": "nav1text",
-                  "fill": "$foreground_inverse",
-                  "content": "New Search",
-                  "fontFamily": "Inter",
-                  "fontSize": 14,
-                  "fontWeight": "normal"
-                }
-              ]
-            },
-            {
-              "type": "frame",
-              "id": "5qiAY",
-              "name": "nav2",
-              "width": "fill_container",
-              "gap": 12,
-              "padding": [
-                12,
-                16
-              ],
-              "alignItems": "center",
-              "children": [
-                {
-                  "type": "icon_font",
-                  "id": "tsSiG",
-                  "name": "nav2icon",
-                  "width": 20,
-                  "height": 20,
-                  "iconFontName": "history",
-                  "iconFontFamily": "lucide",
-                  "fill": "$foreground_muted"
-                },
-                {
-                  "type": "text",
-                  "id": "VwpUD",
-                  "name": "nav2text",
-                  "fill": "$foreground_muted",
-                  "content": "History",
-                  "fontFamily": "Inter",
-                  "fontSize": 14,
-                  "fontWeight": "normal"
-                }
-              ]
-            },
-            {
-              "type": "frame",
-              "id": "GbAkg",
-              "name": "nav3",
-              "width": "fill_container",
-              "gap": 12,
-              "padding": [
-                12,
-                16
-              ],
-              "alignItems": "center",
-              "children": [
-                {
-                  "type": "icon_font",
-                  "id": "CP7Ug",
-                  "name": "nav3icon",
-                  "width": 20,
-                  "height": 20,
-                  "iconFontName": "settings",
-                  "iconFontFamily": "lucide",
-                  "fill": "$foreground_muted"
-                },
-                {
-                  "type": "text",
-                  "id": "eX3XC",
-                  "name": "nav3text",
-                  "fill": "$foreground_muted",
-                  "content": "Agent Settings",
-                  "fontFamily": "Inter",
-                  "fontSize": 14,
-                  "fontWeight": "normal"
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "type": "frame",
-          "id": "4NdFn",
-          "name": "nav3",
-          "width": "fill_container",
-          "gap": 12,
-          "padding": [
-            12,
-            16
-          ],
-          "alignItems": "center",
-          "children": [
-            {
-              "type": "icon_font",
-              "id": "d6rJg",
-              "name": "nav3icon",
-              "width": 20,
-              "height": 20,
-              "iconFontName": "settings",
-              "iconFontFamily": "lucide",
-              "fill": "$foreground_muted"
-            },
-            {
-              "type": "text",
-              "id": "UWVu0",
-              "name": "nav3text",
-              "fill": "$foreground_muted",
-              "content": "Agent Settings",
-              "fontFamily": "Inter",
-              "fontSize": 14,
-              "fontWeight": "normal"
-            }
-          ]
-        }
-      ]
+      "gap": 16
     },
     {
       "type": "text",
@@ -1328,6 +1109,232 @@
       "fontFamily": "Playfair Display",
       "fontSize": 24,
       "fontWeight": "bold"
+    },
+    {
+      "type": "frame",
+      "id": "4tZSL",
+      "x": 900,
+      "y": 541,
+      "name": "nav1",
+      "width": "fill_container(232)",
+      "fill": "#222222",
+      "cornerRadius": "$rounded_sm",
+      "gap": 12,
+      "padding": [
+        12,
+        16
+      ],
+      "alignItems": "center",
+      "children": [
+        {
+          "type": "icon_font",
+          "id": "hnC7k",
+          "name": "nav1icon",
+          "width": 20,
+          "height": 20,
+          "iconFontName": "search",
+          "iconFontFamily": "lucide",
+          "fill": "$accent_primary"
+        },
+        {
+          "type": "text",
+          "id": "LLzyO",
+          "name": "nav1text",
+          "fill": "$foreground_inverse",
+          "content": "New Search",
+          "fontFamily": "Inter",
+          "fontSize": 14,
+          "fontWeight": "normal"
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "1fual",
+      "x": 900,
+      "y": 601,
+      "name": "nav2",
+      "width": "fill_container(232)",
+      "gap": 12,
+      "padding": [
+        12,
+        16
+      ],
+      "alignItems": "center",
+      "children": [
+        {
+          "type": "icon_font",
+          "id": "xfpcC",
+          "name": "nav2icon",
+          "width": 20,
+          "height": 20,
+          "iconFontName": "history",
+          "iconFontFamily": "lucide",
+          "fill": "$foreground_muted"
+        },
+        {
+          "type": "text",
+          "id": "8FWLa",
+          "name": "nav2text",
+          "fill": "$foreground_muted",
+          "content": "History",
+          "fontFamily": "Inter",
+          "fontSize": 14,
+          "fontWeight": "normal"
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "GeoUb",
+      "x": 900,
+      "y": 661,
+      "name": "nav",
+      "width": "fill_container(232)",
+      "layout": "vertical",
+      "gap": 16,
+      "children": [
+        {
+          "type": "frame",
+          "id": "jEbt7",
+          "name": "nav1",
+          "width": "fill_container",
+          "fill": "#222222",
+          "cornerRadius": "$rounded_sm",
+          "gap": 12,
+          "padding": [
+            12,
+            16
+          ],
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "icon_font",
+              "id": "Y9Vrc",
+              "name": "nav1icon",
+              "width": 20,
+              "height": 20,
+              "iconFontName": "search",
+              "iconFontFamily": "lucide",
+              "fill": "$accent_primary"
+            },
+            {
+              "type": "text",
+              "id": "4LDQP",
+              "name": "nav1text",
+              "fill": "$foreground_inverse",
+              "content": "New Search",
+              "fontFamily": "Inter",
+              "fontSize": 14,
+              "fontWeight": "normal"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "5qiAY",
+          "name": "nav2",
+          "width": "fill_container",
+          "gap": 12,
+          "padding": [
+            12,
+            16
+          ],
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "icon_font",
+              "id": "tsSiG",
+              "name": "nav2icon",
+              "width": 20,
+              "height": 20,
+              "iconFontName": "history",
+              "iconFontFamily": "lucide",
+              "fill": "$foreground_muted"
+            },
+            {
+              "type": "text",
+              "id": "VwpUD",
+              "name": "nav2text",
+              "fill": "$foreground_muted",
+              "content": "History",
+              "fontFamily": "Inter",
+              "fontSize": 14,
+              "fontWeight": "normal"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "GbAkg",
+          "name": "nav3",
+          "width": "fill_container",
+          "gap": 12,
+          "padding": [
+            12,
+            16
+          ],
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "icon_font",
+              "id": "CP7Ug",
+              "name": "nav3icon",
+              "width": 20,
+              "height": 20,
+              "iconFontName": "settings",
+              "iconFontFamily": "lucide",
+              "fill": "$foreground_muted"
+            },
+            {
+              "type": "text",
+              "id": "eX3XC",
+              "name": "nav3text",
+              "fill": "$foreground_muted",
+              "content": "Agent Settings",
+              "fontFamily": "Inter",
+              "fontSize": 14,
+              "fontWeight": "normal"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "4NdFn",
+      "x": 924,
+      "y": 892,
+      "name": "nav3",
+      "width": "fill_container(232)",
+      "gap": 12,
+      "padding": [
+        12,
+        16
+      ],
+      "alignItems": "center",
+      "children": [
+        {
+          "type": "icon_font",
+          "id": "d6rJg",
+          "name": "nav3icon",
+          "width": 20,
+          "height": 20,
+          "iconFontName": "settings",
+          "iconFontFamily": "lucide",
+          "fill": "$foreground_muted"
+        },
+        {
+          "type": "text",
+          "id": "UWVu0",
+          "name": "nav3text",
+          "fill": "$foreground_muted",
+          "content": "Agent Settings",
+          "fontFamily": "Inter",
+          "fontSize": 14,
+          "fontWeight": "normal"
+        }
+      ]
     }
   ],
   "variables": {

@@ -4,240 +4,560 @@
     {
       "type": "frame",
       "id": "ixN3v",
-      "x": -204,
-      "y": 292,
+      "x": -438,
+      "y": 36,
       "name": "Frame",
       "clip": true,
-      "width": 800,
-      "height": 600,
+      "width": 1034,
+      "height": 856,
       "fill": "#FFFFFF",
       "layout": "none",
       "children": [
         {
           "type": "frame",
-          "id": "LSlQ8",
-          "x": 0,
-          "y": 0,
-          "name": "nav",
-          "width": "fill_container(232)",
-          "layout": "vertical",
-          "gap": 16,
+          "id": "ayXuN",
+          "x": -58,
+          "y": -26,
+          "name": "main2",
+          "width": "fill_container(0)",
+          "height": "fill_container(0)",
+          "layout": "none",
           "children": [
             {
               "type": "frame",
-              "id": "4tZSL",
-              "name": "nav1",
-              "width": "fill_container",
-              "fill": "#222222",
-              "cornerRadius": "$rounded_sm",
-              "gap": 12,
-              "padding": [
-                12,
-                16
-              ],
-              "alignItems": "center",
+              "id": "xkC9l",
+              "x": 0,
+              "y": 0,
+              "name": "bgStreaks2",
+              "width": 1160,
+              "height": 900,
+              "layout": "none",
               "children": [
                 {
-                  "type": "icon_font",
-                  "id": "hnC7k",
-                  "name": "nav1icon",
-                  "width": 20,
-                  "height": 20,
-                  "iconFontName": "search",
-                  "iconFontFamily": "lucide",
-                  "fill": "$accent_primary"
+                  "type": "rectangle",
+                  "id": "yFXiH",
+                  "x": 200,
+                  "y": 200,
+                  "name": "streak1",
+                  "opacity": 0.6,
+                  "rotation": 10,
+                  "fill": "$accent_primary",
+                  "width": 800,
+                  "height": 4,
+                  "effect": {
+                    "type": "blur",
+                    "radius": 40
+                  }
                 },
                 {
-                  "type": "text",
-                  "id": "LLzyO",
-                  "name": "nav1text",
-                  "fill": "$foreground_inverse",
-                  "content": "New Search",
-                  "fontFamily": "Inter",
-                  "fontSize": 14,
-                  "fontWeight": "normal"
+                  "type": "rectangle",
+                  "id": "NRfeq",
+                  "x": 600,
+                  "y": 600,
+                  "name": "streak2",
+                  "opacity": 0.5,
+                  "rotation": -5,
+                  "fill": "$accent_secondary",
+                  "width": 600,
+                  "height": 6,
+                  "effect": {
+                    "type": "blur",
+                    "radius": 50
+                  }
                 }
               ]
             },
             {
               "type": "frame",
-              "id": "1fual",
-              "name": "nav2",
-              "width": "fill_container",
-              "gap": 12,
-              "padding": [
-                12,
-                16
-              ],
-              "alignItems": "center",
-              "children": [
-                {
-                  "type": "icon_font",
-                  "id": "xfpcC",
-                  "name": "nav2icon",
-                  "width": 20,
-                  "height": 20,
-                  "iconFontName": "history",
-                  "iconFontFamily": "lucide",
-                  "fill": "$foreground_muted"
-                },
-                {
-                  "type": "text",
-                  "id": "8FWLa",
-                  "name": "nav2text",
-                  "fill": "$foreground_muted",
-                  "content": "History",
-                  "fontFamily": "Inter",
-                  "fontSize": 14,
-                  "fontWeight": "normal"
-                }
-              ]
-            },
-            {
-              "type": "frame",
-              "id": "GeoUb",
-              "name": "nav",
-              "width": "fill_container",
+              "id": "i4eP7",
+              "x": 0,
+              "y": 0,
+              "name": "mainLayout2",
+              "width": 1160,
+              "height": 900,
               "layout": "vertical",
-              "gap": 16,
-              "children": [
-                {
-                  "type": "frame",
-                  "id": "jEbt7",
-                  "name": "nav1",
-                  "width": "fill_container",
-                  "fill": "#222222",
-                  "cornerRadius": "$rounded_sm",
-                  "gap": 12,
-                  "padding": [
-                    12,
-                    16
-                  ],
-                  "alignItems": "center",
-                  "children": [
-                    {
-                      "type": "icon_font",
-                      "id": "Y9Vrc",
-                      "name": "nav1icon",
-                      "width": 20,
-                      "height": 20,
-                      "iconFontName": "search",
-                      "iconFontFamily": "lucide",
-                      "fill": "$accent_primary"
-                    },
-                    {
-                      "type": "text",
-                      "id": "4LDQP",
-                      "name": "nav1text",
-                      "fill": "$foreground_inverse",
-                      "content": "New Search",
-                      "fontFamily": "Inter",
-                      "fontSize": 14,
-                      "fontWeight": "normal"
-                    }
-                  ]
-                },
-                {
-                  "type": "frame",
-                  "id": "5qiAY",
-                  "name": "nav2",
-                  "width": "fill_container",
-                  "gap": 12,
-                  "padding": [
-                    12,
-                    16
-                  ],
-                  "alignItems": "center",
-                  "children": [
-                    {
-                      "type": "icon_font",
-                      "id": "tsSiG",
-                      "name": "nav2icon",
-                      "width": 20,
-                      "height": 20,
-                      "iconFontName": "history",
-                      "iconFontFamily": "lucide",
-                      "fill": "$foreground_muted"
-                    },
-                    {
-                      "type": "text",
-                      "id": "VwpUD",
-                      "name": "nav2text",
-                      "fill": "$foreground_muted",
-                      "content": "History",
-                      "fontFamily": "Inter",
-                      "fontSize": 14,
-                      "fontWeight": "normal"
-                    }
-                  ]
-                },
-                {
-                  "type": "frame",
-                  "id": "GbAkg",
-                  "name": "nav3",
-                  "width": "fill_container",
-                  "gap": 12,
-                  "padding": [
-                    12,
-                    16
-                  ],
-                  "alignItems": "center",
-                  "children": [
-                    {
-                      "type": "icon_font",
-                      "id": "CP7Ug",
-                      "name": "nav3icon",
-                      "width": 20,
-                      "height": 20,
-                      "iconFontName": "settings",
-                      "iconFontFamily": "lucide",
-                      "fill": "$foreground_muted"
-                    },
-                    {
-                      "type": "text",
-                      "id": "eX3XC",
-                      "name": "nav3text",
-                      "fill": "$foreground_muted",
-                      "content": "Agent Settings",
-                      "fontFamily": "Inter",
-                      "fontSize": 14,
-                      "fontWeight": "normal"
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "type": "frame",
-              "id": "4NdFn",
-              "name": "nav3",
-              "width": "fill_container",
-              "gap": 12,
+              "gap": 32,
               "padding": [
-                12,
-                16
+                40,
+                80
               ],
-              "alignItems": "center",
               "children": [
                 {
-                  "type": "icon_font",
-                  "id": "d6rJg",
-                  "name": "nav3icon",
-                  "width": 20,
-                  "height": 20,
-                  "iconFontName": "settings",
-                  "iconFontFamily": "lucide",
-                  "fill": "$foreground_muted"
+                  "type": "frame",
+                  "id": "fbDFH",
+                  "name": "header2",
+                  "width": "fill_container",
+                  "justifyContent": "space_between",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "bskda",
+                      "name": "titleArea",
+                      "layout": "vertical",
+                      "gap": 8,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "IPd6m",
+                          "name": "mainTitle",
+                          "fill": "$foreground_inverse",
+                          "content": "Multi-agent reinforcement learning",
+                          "fontFamily": "Playfair Display",
+                          "fontSize": 32,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "text",
+                          "id": "cwQgV",
+                          "name": "subTitle",
+                          "fill": "$accent_secondary",
+                          "content": "Research completed in 14.2s • 12 sources analyzed",
+                          "fontFamily": "Inter",
+                          "fontSize": 16,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "sz4pf",
+                      "name": "modelSelect",
+                      "fill": "#1a1a1a",
+                      "cornerRadius": "$rounded_lg",
+                      "stroke": {
+                        "thickness": 1,
+                        "fill": "$border_dark"
+                      },
+                      "gap": 10,
+                      "padding": [
+                        12,
+                        16
+                      ],
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "icon_font",
+                          "id": "fWVuj",
+                          "name": "modelIcon",
+                          "width": 18,
+                          "height": 18,
+                          "iconFontName": "cpu",
+                          "iconFontFamily": "lucide",
+                          "fill": "$accent_secondary"
+                        },
+                        {
+                          "type": "text",
+                          "id": "mssqm",
+                          "name": "modelText",
+                          "fill": "$foreground_inverse",
+                          "content": "Claude 3.5 Sonnet",
+                          "fontFamily": "Geist Mono",
+                          "fontSize": 14,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    }
+                  ]
                 },
                 {
-                  "type": "text",
-                  "id": "UWVu0",
-                  "name": "nav3text",
-                  "fill": "$foreground_muted",
-                  "content": "Agent Settings",
-                  "fontFamily": "Inter",
-                  "fontSize": 14,
-                  "fontWeight": "normal"
+                  "type": "frame",
+                  "id": "0nz9c",
+                  "name": "resultsArea",
+                  "width": "fill_container",
+                  "height": "fill_container",
+                  "gap": 48,
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "AbKvi",
+                      "name": "leftCol",
+                      "width": "fill_container",
+                      "height": "fill_container",
+                      "layout": "vertical",
+                      "gap": 24,
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "Z9xij",
+                          "name": "agentStatus",
+                          "fill": "#111111",
+                          "cornerRadius": "$rounded_sm",
+                          "stroke": {
+                            "thickness": 1,
+                            "fill": "$border_dark"
+                          },
+                          "gap": 12,
+                          "padding": [
+                            12,
+                            16
+                          ],
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "icon_font",
+                              "id": "hSFKO",
+                              "name": "statusIcon",
+                              "width": 20,
+                              "height": 20,
+                              "iconFontName": "check",
+                              "iconFontFamily": "lucide",
+                              "fill": "$accent_primary"
+                            },
+                            {
+                              "type": "text",
+                              "id": "Gl8FA",
+                              "name": "statusText",
+                              "fill": "$foreground_muted",
+                              "content": "Agent reasoning complete. Synthesized from 12 distinct papers.",
+                              "fontFamily": "Inter",
+                              "fontSize": 14,
+                              "fontWeight": "normal"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "ovOVa",
+                          "name": "reportContent",
+                          "width": "fill_container",
+                          "layout": "vertical",
+                          "gap": 24,
+                          "children": [
+                            {
+                              "type": "frame",
+                              "id": "xH7Fj",
+                              "name": "thoughtProcess",
+                              "width": "fill_container",
+                              "fill": "#161616",
+                              "cornerRadius": "$rounded_lg",
+                              "stroke": {
+                                "thickness": 1,
+                                "fill": "$border_dark"
+                              },
+                              "layout": "vertical",
+                              "gap": 16,
+                              "padding": 24,
+                              "children": [
+                                {
+                                  "type": "frame",
+                                  "id": "6rVXF",
+                                  "name": "tpHeader",
+                                  "gap": 12,
+                                  "alignItems": "center",
+                                  "children": [
+                                    {
+                                      "type": "icon_font",
+                                      "id": "Bvscp",
+                                      "name": "tpIcon",
+                                      "width": 18,
+                                      "height": 18,
+                                      "iconFontName": "brain",
+                                      "iconFontFamily": "lucide",
+                                      "fill": "$accent_secondary"
+                                    },
+                                    {
+                                      "type": "text",
+                                      "id": "4l1zQ",
+                                      "name": "tpTitle",
+                                      "fill": "$foreground_inverse",
+                                      "content": "Agent reasoning path (4 steps)",
+                                      "fontFamily": "Geist Mono",
+                                      "fontSize": 14,
+                                      "fontWeight": "normal"
+                                    }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "type": "text",
+                              "id": "CjLwf",
+                              "name": "p1",
+                              "fill": "$foreground_inverse",
+                              "textGrowth": "fixed-width",
+                              "width": "fill_container",
+                              "content": "Multi-agent reinforcement learning (MARL) has seen significant breakthroughs recently, particularly in how agents communicate and share representations. The transition from independent learners to coordinated systems has yielded state-of-the-art results in complex environments.",
+                              "lineHeight": 1.6,
+                              "fontFamily": "Inter",
+                              "fontSize": 16,
+                              "fontWeight": "normal"
+                            },
+                            {
+                              "type": "frame",
+                              "id": "ZOi6B",
+                              "name": "advancements",
+                              "width": "fill_container",
+                              "layout": "vertical",
+                              "gap": 16,
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "RsgkH",
+                                  "name": "h2",
+                                  "fill": "$foreground_inverse",
+                                  "content": "Key Advancements",
+                                  "fontFamily": "Playfair Display",
+                                  "fontSize": 24,
+                                  "fontWeight": "normal"
+                                },
+                                {
+                                  "type": "frame",
+                                  "id": "f9shq",
+                                  "name": "bullet1",
+                                  "width": "fill_container",
+                                  "gap": 12,
+                                  "children": [
+                                    {
+                                      "type": "icon_font",
+                                      "id": "ddI4k",
+                                      "name": "b1Icon",
+                                      "width": 16,
+                                      "height": 16,
+                                      "iconFontName": "chevron-right",
+                                      "iconFontFamily": "lucide",
+                                      "fill": "$accent_primary"
+                                    },
+                                    {
+                                      "type": "text",
+                                      "id": "WNTPZ",
+                                      "name": "b1Text",
+                                      "fill": "$foreground_muted",
+                                      "textGrowth": "fixed-width",
+                                      "width": "fill_container",
+                                      "content": "Centralized Training with Decentralized Execution (CTDE): New architectures allow for more efficient credit assignment across large swarms of agents.",
+                                      "lineHeight": 1.5,
+                                      "fontFamily": "Inter",
+                                      "fontSize": 15,
+                                      "fontWeight": "normal"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "type": "frame",
+                                  "id": "oT8S1",
+                                  "name": "bullet2",
+                                  "width": "fill_container",
+                                  "gap": 12,
+                                  "children": [
+                                    {
+                                      "type": "icon_font",
+                                      "id": "CjgQg",
+                                      "name": "b2Icon",
+                                      "width": 16,
+                                      "height": 16,
+                                      "iconFontName": "chevron-right",
+                                      "iconFontFamily": "lucide",
+                                      "fill": "$accent_primary"
+                                    },
+                                    {
+                                      "type": "text",
+                                      "id": "tjBTZ",
+                                      "name": "b2Text",
+                                      "fill": "$foreground_muted",
+                                      "textGrowth": "fixed-width",
+                                      "width": "fill_container",
+                                      "content": "Emergent Tool Use: Agents are increasingly able to discover and utilize external APIs autonomously without explicit reward shaping.",
+                                      "lineHeight": 1.5,
+                                      "fontFamily": "Inter",
+                                      "fontSize": 15,
+                                      "fontWeight": "normal"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "type": "frame",
+                                  "id": "o0FJZ",
+                                  "name": "bullet3",
+                                  "width": "fill_container",
+                                  "gap": 12,
+                                  "children": [
+                                    {
+                                      "type": "icon_font",
+                                      "id": "D1csN",
+                                      "name": "b3Icon",
+                                      "width": 16,
+                                      "height": 16,
+                                      "iconFontName": "chevron-right",
+                                      "iconFontFamily": "lucide",
+                                      "fill": "$accent_primary"
+                                    },
+                                    {
+                                      "type": "text",
+                                      "id": "0h5sD",
+                                      "name": "b3Text",
+                                      "fill": "$foreground_muted",
+                                      "textGrowth": "fixed-width",
+                                      "width": "fill_container",
+                                      "content": "Zero-shot Coordination: Generalizing cooperative behaviors to ad-hoc teams and novel environments remains a key focus.",
+                                      "lineHeight": 1.5,
+                                      "fontFamily": "Inter",
+                                      "fontSize": 15,
+                                      "fontWeight": "normal"
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "WGfb7",
+                      "name": "rightCol",
+                      "width": 320,
+                      "height": "fill_container",
+                      "fill": "#0a0a0a",
+                      "cornerRadius": "$rounded_lg",
+                      "stroke": {
+                        "thickness": 1,
+                        "fill": "$border_dark"
+                      },
+                      "layout": "vertical",
+                      "gap": 24,
+                      "padding": 24,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "yGFUM",
+                          "name": "sourcesTitle",
+                          "fill": "$foreground_inverse",
+                          "content": "Cited Sources",
+                          "fontFamily": "Playfair Display",
+                          "fontSize": 18,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "frame",
+                          "id": "5OEVL",
+                          "name": "sourcesList",
+                          "width": "fill_container",
+                          "layout": "vertical",
+                          "gap": 16,
+                          "children": [
+                            {
+                              "type": "frame",
+                              "id": "48TtC",
+                              "name": "source1",
+                              "width": "fill_container",
+                              "fill": "#111111",
+                              "cornerRadius": "$rounded_sm",
+                              "stroke": {
+                                "thickness": 1,
+                                "fill": "$border_dark"
+                              },
+                              "layout": "vertical",
+                              "gap": 8,
+                              "padding": 16,
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "XrK8s",
+                                  "name": "s1Title",
+                                  "fill": "$foreground_inverse",
+                                  "textGrowth": "fixed-width",
+                                  "width": "fill_container",
+                                  "content": "FACMAC: Factored Multi-Agent Policy Gradients",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 14,
+                                  "fontWeight": "bold"
+                                },
+                                {
+                                  "type": "frame",
+                                  "id": "tRp29",
+                                  "name": "s1Meta",
+                                  "gap": 8,
+                                  "alignItems": "center",
+                                  "children": [
+                                    {
+                                      "type": "text",
+                                      "id": "NAb0z",
+                                      "name": "s1Badge",
+                                      "fill": "$accent_secondary",
+                                      "content": "NeurIPS",
+                                      "fontFamily": "Geist Mono",
+                                      "fontSize": 11,
+                                      "fontWeight": "normal"
+                                    },
+                                    {
+                                      "type": "text",
+                                      "id": "6BlNg",
+                                      "name": "s1Link",
+                                      "fill": "$foreground_muted",
+                                      "content": "arxiv.org/abs...",
+                                      "fontFamily": "Geist Mono",
+                                      "fontSize": 11,
+                                      "fontWeight": "normal"
+                                    }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "mLvrJ",
+                              "name": "source2",
+                              "width": "fill_container",
+                              "fill": "#111111",
+                              "cornerRadius": "$rounded_sm",
+                              "stroke": {
+                                "thickness": 1,
+                                "fill": "$border_dark"
+                              },
+                              "layout": "vertical",
+                              "gap": 8,
+                              "padding": 16,
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "igxq5",
+                                  "name": "s2Title",
+                                  "fill": "$foreground_inverse",
+                                  "textGrowth": "fixed-width",
+                                  "width": "fill_container",
+                                  "content": "MADDPG: Multi-Agent Actor-Critic",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 14,
+                                  "fontWeight": "bold"
+                                },
+                                {
+                                  "type": "frame",
+                                  "id": "YvBDG",
+                                  "name": "s2Meta",
+                                  "gap": 8,
+                                  "alignItems": "center",
+                                  "children": [
+                                    {
+                                      "type": "text",
+                                      "id": "3znVp",
+                                      "name": "s2Badge",
+                                      "fill": "$accent_primary",
+                                      "content": "OpenAI",
+                                      "fontFamily": "Geist Mono",
+                                      "fontSize": 11,
+                                      "fontWeight": "normal"
+                                    },
+                                    {
+                                      "type": "text",
+                                      "id": "E35o7",
+                                      "name": "s2Link",
+                                      "fill": "$foreground_muted",
+                                      "content": "openai.com/...",
+                                      "fontFamily": "Geist Mono",
+                                      "fontSize": 11,
+                                      "fontWeight": "normal"
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
                 }
               ]
             }
@@ -248,27 +568,15 @@
     {
       "type": "frame",
       "id": "UOdTW",
-      "x": 530,
-      "y": 251,
+      "x": 900,
+      "y": 345,
       "name": "sidebar",
       "width": 280,
       "height": "fill_container(0)",
       "fill": "#111111",
       "layout": "vertical",
       "gap": 24,
-      "padding": 24,
-      "children": [
-        {
-          "type": "text",
-          "id": "oIVnw",
-          "name": "logo",
-          "fill": "$foreground_inverse",
-          "content": "Research Agent",
-          "fontFamily": "Playfair Display",
-          "fontSize": 24,
-          "fontWeight": "bold"
-        }
-      ]
+      "padding": 24
     },
     {
       "type": "frame",
@@ -757,577 +1065,269 @@
     {
       "type": "frame",
       "id": "t9t7I",
-      "x": 530,
-      "y": 251,
+      "x": 900,
+      "y": 391,
       "name": "sidebar2",
       "width": 280,
       "height": "fill_container(0)",
       "fill": "#111111",
       "layout": "vertical",
       "gap": 24,
-      "padding": 24,
-      "children": [
-        {
-          "type": "text",
-          "id": "0ug4c",
-          "name": "logo",
-          "fill": "$foreground_inverse",
-          "content": "Research Agent",
-          "fontFamily": "Playfair Display",
-          "fontSize": 24,
-          "fontWeight": "bold"
-        }
-      ]
+      "padding": 24
     },
     {
       "type": "frame",
-      "id": "ayXuN",
-      "x": 704,
-      "y": 191,
-      "name": "main2",
-      "width": "fill_container(0)",
-      "height": "fill_container(0)",
-      "layout": "none",
+      "id": "LSlQ8",
+      "x": 179,
+      "y": 962,
+      "name": "nav",
+      "width": "fill_container(232)",
+      "layout": "vertical",
+      "gap": 16,
       "children": [
         {
           "type": "frame",
-          "id": "xkC9l",
-          "x": 0,
-          "y": 0,
-          "name": "bgStreaks2",
-          "width": 1160,
-          "height": 900,
-          "layout": "none",
+          "id": "4tZSL",
+          "name": "nav1",
+          "width": "fill_container",
+          "fill": "#222222",
+          "cornerRadius": "$rounded_sm",
+          "gap": 12,
+          "padding": [
+            12,
+            16
+          ],
+          "alignItems": "center",
           "children": [
             {
-              "type": "rectangle",
-              "id": "yFXiH",
-              "x": 200,
-              "y": 200,
-              "name": "streak1",
-              "opacity": 0.6,
-              "rotation": 10,
-              "fill": "$accent_primary",
-              "width": 800,
-              "height": 4,
-              "effect": {
-                "type": "blur",
-                "radius": 40
-              }
+              "type": "icon_font",
+              "id": "hnC7k",
+              "name": "nav1icon",
+              "width": 20,
+              "height": 20,
+              "iconFontName": "search",
+              "iconFontFamily": "lucide",
+              "fill": "$accent_primary"
             },
             {
-              "type": "rectangle",
-              "id": "NRfeq",
-              "x": 600,
-              "y": 600,
-              "name": "streak2",
-              "opacity": 0.5,
-              "rotation": -5,
-              "fill": "$accent_secondary",
-              "width": 600,
-              "height": 6,
-              "effect": {
-                "type": "blur",
-                "radius": 50
-              }
+              "type": "text",
+              "id": "LLzyO",
+              "name": "nav1text",
+              "fill": "$foreground_inverse",
+              "content": "New Search",
+              "fontFamily": "Inter",
+              "fontSize": 14,
+              "fontWeight": "normal"
             }
           ]
         },
         {
           "type": "frame",
-          "id": "i4eP7",
-          "x": 0,
-          "y": 0,
-          "name": "mainLayout2",
-          "width": 1160,
-          "height": 900,
-          "layout": "vertical",
-          "gap": 32,
+          "id": "1fual",
+          "name": "nav2",
+          "width": "fill_container",
+          "gap": 12,
           "padding": [
-            40,
-            80
+            12,
+            16
           ],
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "icon_font",
+              "id": "xfpcC",
+              "name": "nav2icon",
+              "width": 20,
+              "height": 20,
+              "iconFontName": "history",
+              "iconFontFamily": "lucide",
+              "fill": "$foreground_muted"
+            },
+            {
+              "type": "text",
+              "id": "8FWLa",
+              "name": "nav2text",
+              "fill": "$foreground_muted",
+              "content": "History",
+              "fontFamily": "Inter",
+              "fontSize": 14,
+              "fontWeight": "normal"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "GeoUb",
+          "name": "nav",
+          "width": "fill_container",
+          "layout": "vertical",
+          "gap": 16,
           "children": [
             {
               "type": "frame",
-              "id": "fbDFH",
-              "name": "header2",
+              "id": "jEbt7",
+              "name": "nav1",
               "width": "fill_container",
-              "justifyContent": "space_between",
+              "fill": "#222222",
+              "cornerRadius": "$rounded_sm",
+              "gap": 12,
+              "padding": [
+                12,
+                16
+              ],
               "alignItems": "center",
               "children": [
                 {
-                  "type": "frame",
-                  "id": "bskda",
-                  "name": "titleArea",
-                  "layout": "vertical",
-                  "gap": 8,
-                  "children": [
-                    {
-                      "type": "text",
-                      "id": "IPd6m",
-                      "name": "mainTitle",
-                      "fill": "$foreground_inverse",
-                      "content": "Multi-agent reinforcement learning",
-                      "fontFamily": "Playfair Display",
-                      "fontSize": 32,
-                      "fontWeight": "normal"
-                    },
-                    {
-                      "type": "text",
-                      "id": "cwQgV",
-                      "name": "subTitle",
-                      "fill": "$accent_secondary",
-                      "content": "Research completed in 14.2s • 12 sources analyzed",
-                      "fontFamily": "Inter",
-                      "fontSize": 16,
-                      "fontWeight": "normal"
-                    }
-                  ]
+                  "type": "icon_font",
+                  "id": "Y9Vrc",
+                  "name": "nav1icon",
+                  "width": 20,
+                  "height": 20,
+                  "iconFontName": "search",
+                  "iconFontFamily": "lucide",
+                  "fill": "$accent_primary"
                 },
                 {
-                  "type": "frame",
-                  "id": "sz4pf",
-                  "name": "modelSelect",
-                  "fill": "#1a1a1a",
-                  "cornerRadius": "$rounded_lg",
-                  "stroke": {
-                    "thickness": 1,
-                    "fill": "$border_dark"
-                  },
-                  "gap": 10,
-                  "padding": [
-                    12,
-                    16
-                  ],
-                  "alignItems": "center",
-                  "children": [
-                    {
-                      "type": "icon_font",
-                      "id": "fWVuj",
-                      "name": "modelIcon",
-                      "width": 18,
-                      "height": 18,
-                      "iconFontName": "cpu",
-                      "iconFontFamily": "lucide",
-                      "fill": "$accent_secondary"
-                    },
-                    {
-                      "type": "text",
-                      "id": "mssqm",
-                      "name": "modelText",
-                      "fill": "$foreground_inverse",
-                      "content": "Claude 3.5 Sonnet",
-                      "fontFamily": "Geist Mono",
-                      "fontSize": 14,
-                      "fontWeight": "normal"
-                    }
-                  ]
+                  "type": "text",
+                  "id": "4LDQP",
+                  "name": "nav1text",
+                  "fill": "$foreground_inverse",
+                  "content": "New Search",
+                  "fontFamily": "Inter",
+                  "fontSize": 14,
+                  "fontWeight": "normal"
                 }
               ]
             },
             {
               "type": "frame",
-              "id": "0nz9c",
-              "name": "resultsArea",
+              "id": "5qiAY",
+              "name": "nav2",
               "width": "fill_container",
-              "height": "fill_container",
-              "gap": 48,
+              "gap": 12,
+              "padding": [
+                12,
+                16
+              ],
+              "alignItems": "center",
               "children": [
                 {
-                  "type": "frame",
-                  "id": "AbKvi",
-                  "name": "leftCol",
-                  "width": "fill_container",
-                  "height": "fill_container",
-                  "layout": "vertical",
-                  "gap": 24,
-                  "children": [
-                    {
-                      "type": "frame",
-                      "id": "Z9xij",
-                      "name": "agentStatus",
-                      "fill": "#111111",
-                      "cornerRadius": "$rounded_sm",
-                      "stroke": {
-                        "thickness": 1,
-                        "fill": "$border_dark"
-                      },
-                      "gap": 12,
-                      "padding": [
-                        12,
-                        16
-                      ],
-                      "alignItems": "center",
-                      "children": [
-                        {
-                          "type": "icon_font",
-                          "id": "hSFKO",
-                          "name": "statusIcon",
-                          "width": 20,
-                          "height": 20,
-                          "iconFontName": "check",
-                          "iconFontFamily": "lucide",
-                          "fill": "$accent_primary"
-                        },
-                        {
-                          "type": "text",
-                          "id": "Gl8FA",
-                          "name": "statusText",
-                          "fill": "$foreground_muted",
-                          "content": "Agent reasoning complete. Synthesized from 12 distinct papers.",
-                          "fontFamily": "Inter",
-                          "fontSize": 14,
-                          "fontWeight": "normal"
-                        }
-                      ]
-                    },
-                    {
-                      "type": "frame",
-                      "id": "ovOVa",
-                      "name": "reportContent",
-                      "width": "fill_container",
-                      "layout": "vertical",
-                      "gap": 24,
-                      "children": [
-                        {
-                          "type": "frame",
-                          "id": "xH7Fj",
-                          "name": "thoughtProcess",
-                          "width": "fill_container",
-                          "fill": "#161616",
-                          "cornerRadius": "$rounded_lg",
-                          "stroke": {
-                            "thickness": 1,
-                            "fill": "$border_dark"
-                          },
-                          "layout": "vertical",
-                          "gap": 16,
-                          "padding": 24,
-                          "children": [
-                            {
-                              "type": "frame",
-                              "id": "6rVXF",
-                              "name": "tpHeader",
-                              "gap": 12,
-                              "alignItems": "center",
-                              "children": [
-                                {
-                                  "type": "icon_font",
-                                  "id": "Bvscp",
-                                  "name": "tpIcon",
-                                  "width": 18,
-                                  "height": 18,
-                                  "iconFontName": "brain",
-                                  "iconFontFamily": "lucide",
-                                  "fill": "$accent_secondary"
-                                },
-                                {
-                                  "type": "text",
-                                  "id": "4l1zQ",
-                                  "name": "tpTitle",
-                                  "fill": "$foreground_inverse",
-                                  "content": "Agent reasoning path (4 steps)",
-                                  "fontFamily": "Geist Mono",
-                                  "fontSize": 14,
-                                  "fontWeight": "normal"
-                                }
-                              ]
-                            }
-                          ]
-                        },
-                        {
-                          "type": "text",
-                          "id": "CjLwf",
-                          "name": "p1",
-                          "fill": "$foreground_inverse",
-                          "textGrowth": "fixed-width",
-                          "width": "fill_container",
-                          "content": "Multi-agent reinforcement learning (MARL) has seen significant breakthroughs recently, particularly in how agents communicate and share representations. The transition from independent learners to coordinated systems has yielded state-of-the-art results in complex environments.",
-                          "lineHeight": 1.6,
-                          "fontFamily": "Inter",
-                          "fontSize": 16,
-                          "fontWeight": "normal"
-                        },
-                        {
-                          "type": "frame",
-                          "id": "ZOi6B",
-                          "name": "advancements",
-                          "width": "fill_container",
-                          "layout": "vertical",
-                          "gap": 16,
-                          "children": [
-                            {
-                              "type": "text",
-                              "id": "RsgkH",
-                              "name": "h2",
-                              "fill": "$foreground_inverse",
-                              "content": "Key Advancements",
-                              "fontFamily": "Playfair Display",
-                              "fontSize": 24,
-                              "fontWeight": "normal"
-                            },
-                            {
-                              "type": "frame",
-                              "id": "f9shq",
-                              "name": "bullet1",
-                              "width": "fill_container",
-                              "gap": 12,
-                              "children": [
-                                {
-                                  "type": "icon_font",
-                                  "id": "ddI4k",
-                                  "name": "b1Icon",
-                                  "width": 16,
-                                  "height": 16,
-                                  "iconFontName": "chevron-right",
-                                  "iconFontFamily": "lucide",
-                                  "fill": "$accent_primary"
-                                },
-                                {
-                                  "type": "text",
-                                  "id": "WNTPZ",
-                                  "name": "b1Text",
-                                  "fill": "$foreground_muted",
-                                  "textGrowth": "fixed-width",
-                                  "width": "fill_container",
-                                  "content": "Centralized Training with Decentralized Execution (CTDE): New architectures allow for more efficient credit assignment across large swarms of agents.",
-                                  "lineHeight": 1.5,
-                                  "fontFamily": "Inter",
-                                  "fontSize": 15,
-                                  "fontWeight": "normal"
-                                }
-                              ]
-                            },
-                            {
-                              "type": "frame",
-                              "id": "oT8S1",
-                              "name": "bullet2",
-                              "width": "fill_container",
-                              "gap": 12,
-                              "children": [
-                                {
-                                  "type": "icon_font",
-                                  "id": "CjgQg",
-                                  "name": "b2Icon",
-                                  "width": 16,
-                                  "height": 16,
-                                  "iconFontName": "chevron-right",
-                                  "iconFontFamily": "lucide",
-                                  "fill": "$accent_primary"
-                                },
-                                {
-                                  "type": "text",
-                                  "id": "tjBTZ",
-                                  "name": "b2Text",
-                                  "fill": "$foreground_muted",
-                                  "textGrowth": "fixed-width",
-                                  "width": "fill_container",
-                                  "content": "Emergent Tool Use: Agents are increasingly able to discover and utilize external APIs autonomously without explicit reward shaping.",
-                                  "lineHeight": 1.5,
-                                  "fontFamily": "Inter",
-                                  "fontSize": 15,
-                                  "fontWeight": "normal"
-                                }
-                              ]
-                            },
-                            {
-                              "type": "frame",
-                              "id": "o0FJZ",
-                              "name": "bullet3",
-                              "width": "fill_container",
-                              "gap": 12,
-                              "children": [
-                                {
-                                  "type": "icon_font",
-                                  "id": "D1csN",
-                                  "name": "b3Icon",
-                                  "width": 16,
-                                  "height": 16,
-                                  "iconFontName": "chevron-right",
-                                  "iconFontFamily": "lucide",
-                                  "fill": "$accent_primary"
-                                },
-                                {
-                                  "type": "text",
-                                  "id": "0h5sD",
-                                  "name": "b3Text",
-                                  "fill": "$foreground_muted",
-                                  "textGrowth": "fixed-width",
-                                  "width": "fill_container",
-                                  "content": "Zero-shot Coordination: Generalizing cooperative behaviors to ad-hoc teams and novel environments remains a key focus.",
-                                  "lineHeight": 1.5,
-                                  "fontFamily": "Inter",
-                                  "fontSize": 15,
-                                  "fontWeight": "normal"
-                                }
-                              ]
-                            }
-                          ]
-                        }
-                      ]
-                    }
-                  ]
+                  "type": "icon_font",
+                  "id": "tsSiG",
+                  "name": "nav2icon",
+                  "width": 20,
+                  "height": 20,
+                  "iconFontName": "history",
+                  "iconFontFamily": "lucide",
+                  "fill": "$foreground_muted"
                 },
                 {
-                  "type": "frame",
-                  "id": "WGfb7",
-                  "name": "rightCol",
-                  "width": 320,
-                  "height": "fill_container",
-                  "fill": "#0a0a0a",
-                  "cornerRadius": "$rounded_lg",
-                  "stroke": {
-                    "thickness": 1,
-                    "fill": "$border_dark"
-                  },
-                  "layout": "vertical",
-                  "gap": 24,
-                  "padding": 24,
-                  "children": [
-                    {
-                      "type": "text",
-                      "id": "yGFUM",
-                      "name": "sourcesTitle",
-                      "fill": "$foreground_inverse",
-                      "content": "Cited Sources",
-                      "fontFamily": "Playfair Display",
-                      "fontSize": 18,
-                      "fontWeight": "normal"
-                    },
-                    {
-                      "type": "frame",
-                      "id": "5OEVL",
-                      "name": "sourcesList",
-                      "width": "fill_container",
-                      "layout": "vertical",
-                      "gap": 16,
-                      "children": [
-                        {
-                          "type": "frame",
-                          "id": "48TtC",
-                          "name": "source1",
-                          "width": "fill_container",
-                          "fill": "#111111",
-                          "cornerRadius": "$rounded_sm",
-                          "stroke": {
-                            "thickness": 1,
-                            "fill": "$border_dark"
-                          },
-                          "layout": "vertical",
-                          "gap": 8,
-                          "padding": 16,
-                          "children": [
-                            {
-                              "type": "text",
-                              "id": "XrK8s",
-                              "name": "s1Title",
-                              "fill": "$foreground_inverse",
-                              "textGrowth": "fixed-width",
-                              "width": "fill_container",
-                              "content": "FACMAC: Factored Multi-Agent Policy Gradients",
-                              "fontFamily": "Inter",
-                              "fontSize": 14,
-                              "fontWeight": "bold"
-                            },
-                            {
-                              "type": "frame",
-                              "id": "tRp29",
-                              "name": "s1Meta",
-                              "gap": 8,
-                              "alignItems": "center",
-                              "children": [
-                                {
-                                  "type": "text",
-                                  "id": "NAb0z",
-                                  "name": "s1Badge",
-                                  "fill": "$accent_secondary",
-                                  "content": "NeurIPS",
-                                  "fontFamily": "Geist Mono",
-                                  "fontSize": 11,
-                                  "fontWeight": "normal"
-                                },
-                                {
-                                  "type": "text",
-                                  "id": "6BlNg",
-                                  "name": "s1Link",
-                                  "fill": "$foreground_muted",
-                                  "content": "arxiv.org/abs...",
-                                  "fontFamily": "Geist Mono",
-                                  "fontSize": 11,
-                                  "fontWeight": "normal"
-                                }
-                              ]
-                            }
-                          ]
-                        },
-                        {
-                          "type": "frame",
-                          "id": "mLvrJ",
-                          "name": "source2",
-                          "width": "fill_container",
-                          "fill": "#111111",
-                          "cornerRadius": "$rounded_sm",
-                          "stroke": {
-                            "thickness": 1,
-                            "fill": "$border_dark"
-                          },
-                          "layout": "vertical",
-                          "gap": 8,
-                          "padding": 16,
-                          "children": [
-                            {
-                              "type": "text",
-                              "id": "igxq5",
-                              "name": "s2Title",
-                              "fill": "$foreground_inverse",
-                              "textGrowth": "fixed-width",
-                              "width": "fill_container",
-                              "content": "MADDPG: Multi-Agent Actor-Critic",
-                              "fontFamily": "Inter",
-                              "fontSize": 14,
-                              "fontWeight": "bold"
-                            },
-                            {
-                              "type": "frame",
-                              "id": "YvBDG",
-                              "name": "s2Meta",
-                              "gap": 8,
-                              "alignItems": "center",
-                              "children": [
-                                {
-                                  "type": "text",
-                                  "id": "3znVp",
-                                  "name": "s2Badge",
-                                  "fill": "$accent_primary",
-                                  "content": "OpenAI",
-                                  "fontFamily": "Geist Mono",
-                                  "fontSize": 11,
-                                  "fontWeight": "normal"
-                                },
-                                {
-                                  "type": "text",
-                                  "id": "E35o7",
-                                  "name": "s2Link",
-                                  "fill": "$foreground_muted",
-                                  "content": "openai.com/...",
-                                  "fontFamily": "Geist Mono",
-                                  "fontSize": 11,
-                                  "fontWeight": "normal"
-                                }
-                              ]
-                            }
-                          ]
-                        }
-                      ]
-                    }
-                  ]
+                  "type": "text",
+                  "id": "VwpUD",
+                  "name": "nav2text",
+                  "fill": "$foreground_muted",
+                  "content": "History",
+                  "fontFamily": "Inter",
+                  "fontSize": 14,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "GbAkg",
+              "name": "nav3",
+              "width": "fill_container",
+              "gap": 12,
+              "padding": [
+                12,
+                16
+              ],
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "icon_font",
+                  "id": "CP7Ug",
+                  "name": "nav3icon",
+                  "width": 20,
+                  "height": 20,
+                  "iconFontName": "settings",
+                  "iconFontFamily": "lucide",
+                  "fill": "$foreground_muted"
+                },
+                {
+                  "type": "text",
+                  "id": "eX3XC",
+                  "name": "nav3text",
+                  "fill": "$foreground_muted",
+                  "content": "Agent Settings",
+                  "fontFamily": "Inter",
+                  "fontSize": 14,
+                  "fontWeight": "normal"
                 }
               ]
             }
           ]
+        },
+        {
+          "type": "frame",
+          "id": "4NdFn",
+          "name": "nav3",
+          "width": "fill_container",
+          "gap": 12,
+          "padding": [
+            12,
+            16
+          ],
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "icon_font",
+              "id": "d6rJg",
+              "name": "nav3icon",
+              "width": 20,
+              "height": 20,
+              "iconFontName": "settings",
+              "iconFontFamily": "lucide",
+              "fill": "$foreground_muted"
+            },
+            {
+              "type": "text",
+              "id": "UWVu0",
+              "name": "nav3text",
+              "fill": "$foreground_muted",
+              "content": "Agent Settings",
+              "fontFamily": "Inter",
+              "fontSize": 14,
+              "fontWeight": "normal"
+            }
+          ]
         }
       ]
+    },
+    {
+      "type": "text",
+      "id": "oIVnw",
+      "x": 926,
+      "y": 391,
+      "name": "logo",
+      "fill": "$foreground_inverse",
+      "content": "Research Agent",
+      "fontFamily": "Playfair Display",
+      "fontSize": 24,
+      "fontWeight": "bold"
+    },
+    {
+      "type": "text",
+      "id": "0ug4c",
+      "x": 926,
+      "y": 391,
+      "name": "logo",
+      "fill": "$foreground_inverse",
+      "content": "Research Agent",
+      "fontFamily": "Playfair Display",
+      "fontSize": 24,
+      "fontWeight": "bold"
     }
   ],
   "variables": {

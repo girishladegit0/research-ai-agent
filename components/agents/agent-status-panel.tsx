@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, AnimatePresence } from "framer-motion";
-import type { AgentName, AgentStatus } from "@/lib/engine/types";
+import type { AgentName, AgentState, AgentStatus } from "@/lib/engine/types";
 
 // ── Agent Display Config ───────────────────────────────────────
 
@@ -48,15 +48,6 @@ const AGENT_CONFIG: Record<
 
 // ── Types ──────────────────────────────────────────────────────
 
-export interface AgentState {
-  status: AgentStatus;
-  model?: string;
-  provider?: string;
-  durationMs?: number;
-  isFallback?: boolean;
-  error?: string;
-}
-
 interface AgentStatusPanelProps {
   agents: Partial<Record<AgentName, AgentState>>;
   className?: string;
@@ -79,9 +70,9 @@ function StatusIcon({ status }: { status: AgentStatus }) {
       <motion.div
         initial={{ scale: 0 }}
         animate={{ scale: 1 }}
-        className="flex h-4 w-4 items-center justify-center rounded-full bg-emerald-500/20"
+        className="flex h-4 w-4 items-center justify-center rounded-full bg-teal-500/20"
       >
-        <svg className="h-2.5 w-2.5 text-emerald-400" viewBox="0 0 12 12" fill="none">
+        <svg className="h-2.5 w-2.5 text-teal-300" viewBox="0 0 12 12" fill="none">
           <path d="M2 6l3 3 5-5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
         </svg>
       </motion.div>
@@ -130,7 +121,7 @@ function AgentRow({
         status === "running"
           ? "bg-primary/6 border border-primary/15"
           : status === "done"
-            ? "bg-emerald-500/4 border border-emerald-500/10"
+            ? "bg-teal-500/4 border border-teal-500/10"
             : status === "failed"
               ? "bg-red-500/5 border border-red-500/10"
               : "bg-transparent border border-transparent"
@@ -162,13 +153,13 @@ function AgentRow({
             className="flex items-center gap-1.5"
           >
             {isFallback && (
-              <span className="rounded bg-amber-500/15 px-1.5 py-0.5 text-[10px] font-medium text-amber-400">
+              <span className="rounded bg-secondary/15 px-1.5 py-0.5 text-[10px] font-medium text-secondary">
                 Fallback
               </span>
             )}
             <span className={`rounded px-1.5 py-0.5 text-[10px] font-mono ${
               status === "done"
-                ? "bg-emerald-500/10 text-emerald-400"
+                ? "bg-teal-500/10 text-teal-300"
                 : status === "running"
                   ? "bg-primary/10 text-primary animate-pulse glow-sm"
                   : status === "skipped"

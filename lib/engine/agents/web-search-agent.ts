@@ -18,6 +18,7 @@ export async function runWebSearchAgent(
         query: context.enhanced_query || context.query,
         mode,
         maxResults: 8,
+        search_terms: context.search_terms,
       },
       apiKeys
     );

@@ -79,8 +79,8 @@ export function Sidebar({
           <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary/15 border border-primary/20">
             <Sparkles className="h-4 w-4 text-primary" />
           </div>
-          <span className="text-lg font-semibold tracking-tight">
-            Res<span className="text-gradient">Agent</span>
+          <span className="text-xl font-heading tracking-tight text-foreground">
+            Research Agent
           </span>
         </div>
         <button

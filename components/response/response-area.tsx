@@ -1,5 +1,6 @@
 "use client";
 
+import React from "react";
 import { motion } from "framer-motion";
 import type { ResponseSection } from "@/lib/engine/types";
 
@@ -30,11 +31,134 @@ function extractCodeBlock(content: string): { language: string; code: string } {
   return { language: "text", code: content };
 }
 
+import ReactMarkdown, { Components } from "react-markdown";
+
+// ── Helper to render text with markdown links, bold, and italic text ──────────
+
+const markdownComponents: Components = {
+  p: ({ node: _, ...props }) => <span className="block mb-2 last:mb-0" {...props} />,
+  a: ({ node: _, ...props }) => (
+    <a
+      {...props}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="inline-flex items-center gap-1.5 px-3 py-1 my-0.5 font-bold text-xs text-primary bg-primary/10 hover:bg-primary/20 border border-primary/20 rounded-md transition-all cursor-pointer no-underline"
+    >
+      {props.children} ↗
+    </a>
+  ),
+  strong: ({ node: _, ...props }) => (
+    <strong {...props} className="font-bold text-foreground" />
+  ),
+  em: ({ node: _, ...props }) => (
+    <em {...props} className="italic text-muted-foreground" />
+  ),
+  ul: ({ node: _, ...props }) => (
+    <ul {...props} className="list-disc pl-5 my-2 space-y-1 block" />
+  ),
+  ol: ({ node: _, ...props }) => (
+    <ol {...props} className="list-decimal pl-5 my-2 space-y-1 block" />
+  ),
+  li: ({ node: _, ...props }) => (
+    <li {...props} className="" />
+  )
+};
+
+export function renderContent(text: string) {
+  if (!text) return text;
+  return <ReactMarkdown components={markdownComponents}>{text}</ReactMarkdown>;
+}
+
+const ResponseSectionItem = React.memo(function ResponseSectionItem({ 
+  section, 
+  index, 
+  isAccentSection, 
+  isReferences 
+}: { 
+  section: ResponseSection; 
+  index: number; 
+  isAccentSection: boolean; 
+  isReferences: boolean; 
+}) {
+  return (
+    <motion.div
+      custom={index}
+      initial="hidden"
+      animate="visible"
+      variants={sectionVariants}
+    >
+      {/* Heading */}
+      {section.type === "heading" && (
+        <h3
+          className={`text-lg font-semibold ${
+            ACCENT_HEADINGS.has(section.content)
+              ? "text-gradient"
+              : "text-foreground"
+          }`}
+        >
+          {section.content}
+        </h3>
+      )}
+
+      {/* Paragraph */}
+      {section.type === "paragraph" && (
+        <div className="leading-[1.75] text-muted-foreground/90 whitespace-pre-wrap">
+          {renderContent(section.content)}
+        </div>
+      )}
+
+      {/* Bullet list */}
+      {section.type === "bullets" && section.items && (
+        <ul className={`space-y-2 ${isReferences ? "pl-2" : "pl-4"}`}>
+          {section.items.map((item, j) => (
+            <motion.li
+              key={j}
+              initial={{ opacity: 0, x: -8 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{
+                delay: index * 0.15 + j * 0.08,
+                duration: 0.3,
+              }}
+              className={`flex items-start gap-2 text-sm ${
+                isReferences
+                  ? "font-mono text-xs text-muted-foreground/80"
+                  : isAccentSection
+                    ? "text-foreground/90"
+                    : "text-muted-foreground"
+              }`}
+            >
+              {!isReferences && (
+                <span
+                  className={`mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full ${
+                    isAccentSection ? "bg-chart-2" : "bg-primary"
+                  }`}
+                />
+              )}
+              {isReferences ? (
+                <span className="break-all">{renderContent(item)}</span>
+              ) : (
+                renderContent(item)
+              )}
+            </motion.li>
+          ))}
+        </ul>
+      )}
+
+      {/* Code block */}
+      {section.type === "code" && (
+        <CodeBlock content={section.content} />
+      )}
+
+      {/* Fact-check block */}
+      {section.type === "fact_check" && (
+        <FactCheckBlock content={section.content} />
+      )}
+    </motion.div>
+  );
+});
+
 export function ResponseArea({ sections, isStreaming }: ResponseAreaProps) {
   if (sections.length === 0) return null;
-
-  // Track which heading we're under for styling child elements
-  let lastHeading = "";
 
   return (
     <motion.div
@@ -44,85 +168,19 @@ export function ResponseArea({ sections, isStreaming }: ResponseAreaProps) {
     >
       <div className="space-y-4">
         {sections.map((section, i) => {
-          if (section.type === "heading") lastHeading = section.content;
-          const isAccentSection = ACCENT_HEADINGS.has(lastHeading) && section.type !== "heading";
-          const isReferences = REFERENCE_HEADINGS.has(lastHeading);
+          const previousHeadings = sections.slice(0, i + 1).filter(s => s.type === "heading");
+          const currentHeading = previousHeadings.length > 0 ? previousHeadings[previousHeadings.length - 1].content : "";
+          const isAccentSection = ACCENT_HEADINGS.has(currentHeading) && section.type !== "heading";
+          const isReferences = REFERENCE_HEADINGS.has(currentHeading);
 
           return (
-            <motion.div
-              key={i}
-              custom={i}
-              initial="hidden"
-              animate="visible"
-              variants={sectionVariants}
-            >
-              {/* Heading */}
-              {section.type === "heading" && (
-                <h3
-                  className={`text-lg font-semibold ${
-                    ACCENT_HEADINGS.has(section.content)
-                      ? "text-gradient"
-                      : "text-foreground"
-                  }`}
-                >
-                  {section.content}
-                </h3>
-              )}
-
-              {/* Paragraph */}
-              {section.type === "paragraph" && (
-                <p className="leading-[1.75] text-muted-foreground/90 whitespace-pre-wrap">
-                  {section.content}
-                </p>
-              )}
-
-              {/* Bullet list */}
-              {section.type === "bullets" && section.items && (
-                <ul className={`space-y-2 ${isReferences ? "pl-2" : "pl-4"}`}>
-                  {section.items.map((item, j) => (
-                    <motion.li
-                      key={j}
-                      initial={{ opacity: 0, x: -8 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{
-                        delay: i * 0.15 + j * 0.08,
-                        duration: 0.3,
-                      }}
-                      className={`flex items-start gap-2 text-sm ${
-                        isReferences
-                          ? "font-mono text-xs text-muted-foreground/80"
-                          : isAccentSection
-                            ? "text-foreground/90"
-                            : "text-muted-foreground"
-                      }`}
-                    >
-                      {!isReferences && (
-                        <span
-                          className={`mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full ${
-                            isAccentSection ? "bg-chart-2" : "bg-primary"
-                          }`}
-                        />
-                      )}
-                      {isReferences ? (
-                        <span className="break-all">{item}</span>
-                      ) : (
-                        item
-                      )}
-                    </motion.li>
-                  ))}
-                </ul>
-              )}
-
-              {/* Code block */}
-              {section.type === "code" && (
-                <CodeBlock content={section.content} />
-              )}
-
-              {/* Fact-check block */}
-              {section.type === "fact_check" && (
-                <FactCheckBlock content={section.content} />
-              )}
-            </motion.div>
+            <ResponseSectionItem 
+              key={i} 
+              section={section} 
+              index={i} 
+              isAccentSection={isAccentSection} 
+              isReferences={isReferences} 
+            />
           );
         })}
       </div>
@@ -161,7 +219,7 @@ function CodeBlock({ content }: { content: string }) {
   };
 
   return (
-    <div className="overflow-hidden rounded-xl border border-border/60 bg-[#0A0D15]">
+    <div className="overflow-hidden rounded-xl border border-border/60 bg-[#080B18]">
       {/* Header bar */}
       <div className="flex items-center justify-between border-b border-border/40 bg-accent/50 px-4 py-2">
         <span className="font-mono text-[11px] font-medium text-muted-foreground/60 uppercase tracking-wider">
@@ -176,7 +234,7 @@ function CodeBlock({ content }: { content: string }) {
       </div>
       {/* Code */}
       <pre className="overflow-x-auto p-4 text-sm leading-relaxed">
-        <code className="text-emerald-400/80 font-mono">{code}</code>
+        <code className="text-violet-300/90 font-mono">{code}</code>
       </pre>
     </div>
   );
@@ -191,21 +249,21 @@ function FactCheckBlock({ content }: { content: string }) {
   const hasWarning = content.toLowerCase().includes("contradiction") || content.toLowerCase().includes("warning");
 
   const borderColor = isHigh
-    ? "border-emerald-500/20"
+    ? "border-teal-500/20"
     : isMedium
-      ? "border-amber-500/20"
+      ? "border-secondary/20"
       : "border-red-500/20";
 
   const bgColor = isHigh
-    ? "bg-emerald-500/4"
+    ? "bg-teal-500/4"
     : isMedium
-      ? "bg-amber-500/4"
+      ? "bg-secondary/4"
       : "bg-red-500/4";
 
   return (
     <div className={`rounded-xl border p-4 ${borderColor} ${bgColor}`}>
       {hasWarning && (
-        <div className="mb-2 flex items-center gap-1.5 text-xs font-medium text-amber-400">
+        <div className="mb-2 flex items-center gap-1.5 text-xs font-medium text-secondary">
           <span>⚠️</span>
           <span>Contradictions detected</span>
         </div>

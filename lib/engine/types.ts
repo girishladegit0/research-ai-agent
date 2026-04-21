@@ -259,3 +259,37 @@ export interface ResponseSection {
   items?: string[];
   language?: string;
 }
+
+// ── Chat Message (multi-turn conversation) ─────────────────────
+
+export interface ChatMessage {
+  id: string;
+  role: "user" | "assistant";
+  timestamp: number;
+
+  // User message fields
+  query?: string;
+  files?: FileContext[];
+
+  // Assistant message fields
+  sections: ResponseSection[];
+  sources: ResearchSource[];
+  fullResult: ResearchResult | null;
+  streamingText: string;
+  routeComplexity: "simple" | "research" | null;
+  agentStatuses: Partial<Record<AgentName, AgentState>>;
+  showAgentPanel: boolean;
+  statusMessage: string | null;
+  isStreaming: boolean;
+  isLoading: boolean;
+  error: string | null;
+}
+
+export type AgentState = {
+  status: AgentStatus;
+  model?: string;
+  provider?: string;
+  durationMs?: number;
+  isFallback?: boolean;
+  error?: string;
+};

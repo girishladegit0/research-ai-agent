@@ -48,7 +48,7 @@ function handleErrorStatus(status: number): ResearchError {
 
 // ── Timeout Helper ────────────────────────────────────────────
 
-const DEFAULT_TIMEOUT_MS = 45_000; // 45 seconds
+const DEFAULT_TIMEOUT_MS = 90_000; // 90 seconds — agents generate large JSON outputs
 
 function makeSignal(timeoutMs?: number): AbortSignal {
   return AbortSignal.timeout(timeoutMs ?? DEFAULT_TIMEOUT_MS);

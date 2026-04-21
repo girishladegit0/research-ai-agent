@@ -3,15 +3,14 @@ import { generateAIResponse } from "../providers";
 import { classifyError } from "../errors";
 
 // ── Timeouts ──────────────────────────────────────────────────
-const PRIMARY_TIMEOUT_MS = 45_000;   // 45s per-model timeout
-const FALLBACK_RACE_MS   = 20_000;   // start fallback after 20s if primary is still pending
-const REPORT_TIMEOUT_MS  = 90_000;   // report agent gets longer
+const PRIMARY_TIMEOUT_MS = 90_000;   // 90s per-model timeout (generous for large JSON generation)
+const FALLBACK_RACE_MS   = 45_000;   // start fallback after 45s if primary is still pending
+const REPORT_TIMEOUT_MS  = 180_000;  // report agent gets 3 min for 5-6 page synthesis
 
 // ── Base: Call LLM with race-based fallback ──────────────────
 // Strategy: fire primary immediately. After FALLBACK_RACE_MS, if
 // primary hasn't resolved, fire fallback concurrently. First to
-// succeed wins. This cuts latency when the primary is slow but
-// still available.
+// succeed wins. If fallback also fails, keep waiting for primary.
 
 export async function callWithFallback(
   agent: AgentName,
@@ -26,7 +25,7 @@ export async function callWithFallback(
   const isReport = agent === "report-agent";
   const timeoutMs = isReport ? REPORT_TIMEOUT_MS : PRIMARY_TIMEOUT_MS;
 
-  const callModel = (model: ResolvedModel) =>
+  const callModel = (model: ResolvedModel, overrideTimeout?: number) =>
     generateAIResponse({
       model: model.id,
       provider: model.provider,
@@ -35,13 +34,16 @@ export async function callWithFallback(
       apiKeys,
       maxTokens,
       temperature: opts?.temperature ?? 0.3,
-      timeoutMs,
+      timeoutMs: overrideTimeout ?? timeoutMs,
     });
 
-  // 1. Try primary
+  // Keep a reference to the primary call so we can await it even after race timeout
+  const primaryPromise = callModel(primary);
+
+  // 1. Try primary within race window
   try {
     const res = await Promise.race([
-      callModel(primary),
+      primaryPromise,
       new Promise<never>((_, reject) =>
         setTimeout(() => reject(new Error("__RACE_TIMEOUT__")), FALLBACK_RACE_MS)
       ),
@@ -60,28 +62,31 @@ export async function callWithFallback(
       // Primary still running — race it against fallback
       console.warn(`[${agent}] Primary ${primary.id} slow (>${FALLBACK_RACE_MS}ms), racing fallback ${fallback.id}`);
 
-      const primaryPromise = callModel(primary).then(res => ({
+      const primaryWrapped = primaryPromise.then(res => ({
         content: res.content,
         model_used: primary.id,
         provider: primary.provider,
         isFallback: false,
-      })).catch(() => null);
+      }));
 
-      const fallbackPromise = callModel(fallback).then(res => ({
+      const fallbackWrapped = callModel(fallback).then(res => ({
         content: res.content,
         model_used: fallback.id,
         provider: fallback.provider,
         isFallback: true,
-      })).catch(() => null);
+      }));
 
-      const results = await Promise.allSettled([primaryPromise, fallbackPromise]);
-      for (const r of results) {
-        if (r.status === "fulfilled" && r.value) return r.value;
+      // Wait for whichever finishes first successfully
+      try {
+        const winner = await Promise.any([primaryWrapped, fallbackWrapped]);
+        return winner;
+      } catch {
+        // Both rejected — this is the AggregateError case
+        throw new Error(`[${agent}] Both primary and fallback failed after race`);
       }
-      throw new Error(`[${agent}] Both primary and fallback failed after race`);
     }
 
-    // Primary genuinely failed — try fallback directly
+    // Primary genuinely failed — try fallback, but if fallback also fails, give a clear error
     const classified = classifyError(primaryErr, primary.provider);
     console.warn(`[${agent}] Primary ${primary.id} failed (${classified.kind}), switching to ${fallback.id}`);
 

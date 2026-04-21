@@ -4,7 +4,13 @@
       "Bash(npx tsc:*)",
       "Bash(npx next:*)",
       "Bash(wc -l \"/c/Users/a/OneDrive/Desktop/reaserch agent/research-agent/components/\"*/*.tsx)",
-      "Bash(npm run:*)"
+      "Bash(npm run:*)",
+      "Bash(python3:*)",
+      "Bash(rm:*)",
+      "Bash(taskkill /PID 9228 /F)",
+      "Bash(cmd //c \"taskkill /PID 9228 /F\")",
+      "Bash(curl -s -X POST http://localhost:3000/api/research -H \"Content-Type: application/json\" -d '{\"query\":\"hello\",\"mode\":\"pro\",\"model\":\"balanced-1\",\"stream\":false}')",
+      "Bash(cmd //c \"taskkill /F /IM node.exe\")"
     ]
   }
 }

@@ -60,24 +60,36 @@ function extractTitleFromUrl(url: string): string {
 // ── Search system prompt ───────────────────────────────────────
 
 function buildSearchMessages(query: string, searchTerms: string[], maxResults: number, mode: string) {
-  const termsText = searchTerms.length > 0 ? `Optimized search terms to explore: ${searchTerms.join(", ")}` : "";
-  
+  const termsText = searchTerms.length > 0 ? `\nOptimized search terms provided by upstream agent: ${searchTerms.join(", ")}\nUse these terms to find MORE SPECIFIC and RELEVANT sources.` : "";
+
+  const modeInstructions = {
+    deep: "Focus on academic papers, peer-reviewed journals, research institutions, and in-depth technical analysis. Prioritize: arxiv.org, scholar.google.com, nature.com, sciencedirect.com, ieee.org, acm.org.",
+    corpus: "Focus on scientific literature, systematic reviews, meta-analyses, and foundational research papers. Prioritize: arxiv.org, pubmed.ncbi.nlm.nih.gov, jstor.org, springer.com, wiley.com.",
+    pro: "Focus on authoritative professional sources: official documentation, industry reports, reputable news outlets, expert analyses, and government publications. Mix academic and practical sources.",
+  };
+
   return [
     {
       role: "system" as const,
-      content: `You are a research search engine assistant. Generate ${maxResults} highly relevant search result entries for the given query.
-      
-Mode: ${mode === "deep" ? "Academic/in-depth" : mode === "corpus" ? "Scientific literature" : "Professional research"}
+      content: `You are a research source generator. Your job is to produce ${maxResults} highly relevant, diverse, and authoritative search result entries for the given research query.
+
+MODE: ${mode === "deep" ? "Academic/In-depth" : mode === "corpus" ? "Scientific Literature" : "Professional Research"}
+${modeInstructions[mode as keyof typeof modeInstructions] || modeInstructions.pro}
 ${termsText}
 
-Return ONLY a valid JSON array of ${maxResults} objects. Each object MUST have:
-- "title": descriptive title of the source
-- "url": a plausible, realistic URL (e.g. https://arxiv.org/..., https://docs.example.com/..., https://en.wikipedia.org/wiki/...)
-- "snippet": 1-2 sentence excerpt summarizing what that source says about the topic
-- "domain": the domain name only (e.g. "arxiv.org")
+REQUIREMENTS FOR EACH SOURCE:
+- "title": A specific, descriptive title that clearly indicates what the source covers
+- "url": A realistic, well-formed URL from a real domain (e.g., https://en.wikipedia.org/wiki/Topic_Name, https://arxiv.org/abs/XXXX.XXXXX, https://docs.example.com/guide/topic)
+- "snippet": A detailed 2-4 sentence excerpt that provides SUBSTANTIVE information about the topic — include specific facts, data points, or key arguments. This snippet will be used by downstream research agents, so make it information-rich.
+- "domain": The domain name only (e.g., "arxiv.org", "wikipedia.org")
 
-Focus on high-quality, authoritative sources: Wikipedia, arXiv, official docs, major news, research papers, technical blogs.
-Return ONLY the JSON array, no extra text.`,
+SOURCE DIVERSITY REQUIREMENTS:
+- Include at least 2 different source types (e.g., encyclopedia, academic paper, official docs, news article, technical blog)
+- No more than 2 results from the same domain
+- Each snippet should cover a DIFFERENT aspect or dimension of the topic
+- Snippets must contain SPECIFIC information — not vague summaries
+
+Return ONLY a valid JSON array of exactly ${maxResults} objects. No markdown fences, no extra text.`,
     },
     {
       role: "user" as const,
@@ -99,7 +111,7 @@ async function searchViaNvidia(
   const response = await nvidiaComplete(apiKey, {
     model: "abacusai/dracarys-llama-3.1-70b-instruct",   // fast, balanced
     messages: buildSearchMessages(query, searchTerms, maxResults, mode),
-    maxTokens: 1500,
+    maxTokens: 3000,
     temperature: 0.4,
   });
   return parseGeneratedResults(response.content, maxResults);
@@ -118,7 +130,7 @@ async function searchViaOpenRouter(
   const response = await openrouterComplete(apiKey, {
     model: "meta-llama/llama-3.3-70b-instruct:free",
     messages: buildSearchMessages(query, searchTerms, maxResults, mode),
-    maxTokens: 1500,
+    maxTokens: 3000,
     temperature: 0.4,
     jsonMode: true,
   });
